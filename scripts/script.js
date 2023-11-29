@@ -66,7 +66,7 @@ const registerByEmailPasswordNumber = async () => {
         console.log(error);
     }
 }
-// console.log(window.location)
+console.log(window.location)
 if (window.location.pathname==="/Web/login/login/index.html"){
     sing_in.addEventListener("click", loginByEmailPassword)
 }
