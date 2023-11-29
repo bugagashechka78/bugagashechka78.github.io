@@ -1,0 +1,199 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600&display=swap');
+
+html {
+    background-image: url(../images/background.jpg);
+    background-repeat: no-repeat;
+    background-position: center center;
+    background-attachment: fixed;
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    -o-background-size: cover;
+    background-size: cover;
+}
+
+
+.login-page {
+    padding-top: 3vh;
+    padding-left: 55vw;
+}
+
+.yourlogo {
+    color: #000;
+    font-family: Poppins;
+    font-size: 20px;
+    font-style: normal;
+    font-weight: 600;
+    line-height: normal;
+    padding-top: 3vh;
+    padding-left: 3vw;
+}
+
+.form {
+    position: relative;
+    z-index: 1;
+    width: 539px;
+    height: 741px;
+    flex-shrink: 0;
+    border-radius: 40px;
+    background: rgba(255, 255, 255, 0.75);
+}
+
+.form .welcome {
+    color: #000;
+    font-family: Poppins;
+    font-size: 21px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: normal;
+    padding-top: 44px;
+    padding-left: 44px;
+    padding-bottom: 0;
+    margin: 0;
+}
+
+.form .welcome a {
+    color: #779341;
+    font-family: Poppins;
+    font-size: 21px;
+    font-style: normal;
+    font-weight: 600;
+    line-height: normal;
+}
+
+.form .sing {
+    color: #000;
+    font-family: Poppins;
+    font-size: 55px;
+    font-style: normal;
+    font-weight: 500;
+    line-height: normal;
+    padding-top: 0px;
+    margin: 0px;
+    padding-left: 44px;
+    padding-bottom: 112px;
+}
+.form .sing#sing-register{
+    padding-bottom: 45px;
+}
+
+.form button {
+    width: 236px;
+    height: 54px;
+    flex-shrink: 0;
+    border-radius: 10px;
+    background: #779341;
+    box-shadow: 0px 4px 19px 0px rgba(119, 147, 65, 0.30);
+    color: #FFF;
+    border: none;
+    outline: none;
+    font-family: Poppins;
+    font-size: 16px;
+    font-style: normal;
+    font-weight: 500;
+    line-height: normal;
+    margin-left: 259px;
+    margin-top: 76px;
+
+}
+.form button#sing_up{
+    margin-top: 63px;
+}
+
+.form button:hover, .form button:active, .form button:focus {
+    background: #5A7429;
+}
+
+.form input {
+    padding-left: 25px;
+    margin-left: 44px;
+    margin-right: 44px;
+    width: 426px;
+    height: 57px;
+    flex-shrink: 0;
+    border-radius: 9px;
+    border: 1px solid #ADADAD;
+    background: #FFF;
+    color: #808080;
+    font-family: Poppins;
+    font-size: 14px;
+    font-style: normal;
+    font-weight: 300;
+    line-height: normal;
+
+}
+
+.form .input-contact{
+    width: 191px;
+}
+.form .input-contact#number{
+    margin-left: 0;
+}
+.form .input-contact#name{
+    margin-right: 10px;
+}
+
+.form .enter {
+    color: #000;
+    font-family: Poppins;
+    font-size: 16px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: normal;
+    padding-top: 36px;
+    padding-left: 44px;
+    margin: 0px 0px 13px 0px;
+}
+.form .enter#p-number{
+    padding-left: 0;
+}
+.form .enter#enter-register{
+    padding-top: 0;
+}
+
+.form .message {
+
+    text-align: left;
+    margin: 0 0 0 0;
+    padding-right: 44px;
+    color: #8D8D8D;
+    font-family: Poppins;
+    font-size: 13px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: normal;
+
+}
+
+.form .message a {
+    color: #779341;
+    font-family: Poppins;
+    font-size: 13px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: normal;
+}
+
+.form .cols{
+    white-space: nowrap;
+}
+.form .left{
+    vertical-align: top;
+    display: inline-block;
+}
+.form .right{
+    float: right;
+    padding-top: 50px;
+    vertical-align: top;
+    display: inline-block;
+}
+.form .contact{
+    white-space: nowrap;
+}
+.form .left-contact{
+    vertical-align: top;
+    display: inline-block;
+}
+.form .right-contact{
+    vertical-align: top;
+    display: inline-block;
+}
