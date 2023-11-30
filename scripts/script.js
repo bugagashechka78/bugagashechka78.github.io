@@ -44,10 +44,10 @@ const loginByEmailPassword = async () => {
     const login_password_value = login_password.value;
     try {
         await signInWithEmailAndPassword(auth, login_email_value, login_password_value);
-        console.log("Hi");
+        alert("Welcome to the website");
         window.location.href = "../site/index.html";
     } catch (error) {
-        console.log(error)
+        alert("Login error")
     }
 }
 
@@ -59,11 +59,11 @@ const registerByEmailPasswordNumber = async () => {
 
     try{
         await createUserWithEmailAndPassword(auth, reg_email, reg_password);
-        console.log("New");
+        alert("Successful registration");
         window.location.href = "../login/index.html";
     }
     catch (error){
-        console.log(error);
+        alert("Registration error");
     }
 }
 // console.log(window.location)
