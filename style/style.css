@@ -60,7 +60,7 @@ html {
     line-height: normal;
 }
 
-.form .sing {
+.sing {
     color: #000;
     font-family: Poppins;
     font-size: 55px;
@@ -75,8 +75,11 @@ html {
 .form .sing#sing-register{
     padding-bottom: 45px;
 }
+.todo .sing{
+    padding-bottom: 0px;
+}
 
-.form button {
+button {
     width: 236px;
     height: 54px;
     flex-shrink: 0;
@@ -103,7 +106,14 @@ html {
     background: #5A7429;
 }
 
-.form input {
+.todo button{
+    padding: 0;
+    margin: 0 10px 0 10px;
+    width: 54px;
+
+}
+
+input {
     padding-left: 25px;
     margin-left: 44px;
     margin-right: 44px;
@@ -121,6 +131,10 @@ html {
     line-height: normal;
 
 }
+.todo input {
+    width: 326px;
+    margin-bottom: 40px;
+}
 
 .form .input-contact{
     width: 191px;
@@ -132,7 +146,7 @@ html {
     margin-right: 10px;
 }
 
-.form .enter {
+.enter {
     color: #000;
     font-family: Poppins;
     font-size: 16px;
@@ -196,4 +210,35 @@ html {
 .form .right-contact{
     vertical-align: top;
     display: inline-block;
+}
+
+.todo {
+    position: relative;
+    width: 539px;
+    height: 100%;
+    flex-shrink: 0;
+    border-radius: 40px;
+    background: rgba(255, 255, 255, 0.75);
+}
+
+li {
+    list-style-type: none;
+    width: 50vw;
+    padding: 2.5vw;
+}
+
+.done {
+    text-decoration: line-through;
+}
+
+li {
+    color: #000;
+    font-family: Poppins;
+    font-size: 16px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: normal;
+    padding-top: 36px;
+    padding-left: 44px;
+    margin: 0px 0px 13px 0px;
 }

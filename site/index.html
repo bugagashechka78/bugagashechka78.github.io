@@ -2,9 +2,25 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Title</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Todo List</title>
+    <link rel="stylesheet" href="../style/style.css">
 </head>
 <body>
-<p>Welcome to the website</p>
+<div class="login-page">
+    <div class="todo">
+        <form class="todo-form">
+<h1 class = "sing">TODO List</h1>
+<input type="text" id="todoInput" placeholder="Add new todo">
+<button onclick="addTodo()">Add</button>
+<ul id="todoList">
+    <!-- Todo items will be added here -->
+</ul>
+        </form>
+    </div>
+</div>
+
+
+<script src="../scripts/todo.js"></script>
 </body>
 </html>
