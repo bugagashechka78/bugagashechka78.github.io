@@ -46,7 +46,7 @@ export default {
                 {
                   id: 2,
                   ingredient: 'Курица',
-                  quantity: "1200 г"
+                  quantity: "1210 г"
                 }
               ]
         }
