@@ -30,6 +30,17 @@ export default {
                   id: 2,
                   ingredient: 'Баранина',
                   quantity: "900 г"
+                },
+                {
+                  id: 3,
+                  ingredient: 'Рис',
+                  quantity: "1400 г"
+                }
+                ,
+                {
+                  id: 4,
+                  ingredient: 'Карри',
+                  quantity: "5 г"
                 }
               ]
         },
