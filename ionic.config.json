@@ -1,0 +1,7 @@
+{
+  "name": "recipe-ionic",
+  "integrations": {
+    "capacitor": {}
+  },
+  "type": "vue-vite"
+}
