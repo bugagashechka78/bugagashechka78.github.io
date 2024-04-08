@@ -1,69 +1,42 @@
 <template>
   <ion-page>
-    <ion-header>
+    <ion-header class="headerTab3">
       <ion-toolbar>
         <ion-title>Мои рецепты</ion-title>
       </ion-toolbar>
     </ion-header>
-    <ion-item>
-      <ion-input
-          v-bind:value="my_recipe_name"
-          @input="my_recipe_name = $event.target.value"
-          label="Название"
-          placeholder="Введите название"
-          type="text">
-      </ion-input>
-    </ion-item>
-    <ion-item>
-      <ion-input
-          v-bind:value="my_recipe_calorie"
-          @input="my_recipe_calorie = $event.target.value"
-          label="Ккал"
-          placeholder="Введите калорийность на 100г"
-          type="text">
-      </ion-input>
-    </ion-item>
-    <ion-item>
-      <ion-input
-          v-bind:value="my_recipe_ingredient"
-          @input="my_recipe_ingredient = $event.target.value"
-          label="Ингредиент"
-          placeholder="Введите главный ингредиент"
-          type="text">
-      </ion-input>
-    </ion-item>
-    <ion-item>
-      <ion-input
-          v-bind:value="my_recipe_ingredient_quantity"
-          @input="my_recipe_ingredient_quantity = $event.target.value"
-          label="Количество"
-          placeholder="Введите количество главного ингредиента"
-          type="text">
-      </ion-input>
-    </ion-item>
-    <ion-button @click="createRecipe" expand="block" fill="outline">Добавить рецепт</ion-button>
 
     <ion-content>
 
-      <ion-card v-for="recipe in recipes">
-        <ion-card-header>
-          <ion-card-title>{{ recipe.name }}</ion-card-title>
-          <ion-card-subtitle>{{ recipe.calorie }}</ion-card-subtitle>
-        </ion-card-header>
-        <ion-card-content v-for="ingredient in recipe.ingredients">{{ ingredient.ingredient }} {{ ingredient.quantity }}</ion-card-content>
-      </ion-card>
+      <ion-modal ref='modal_win' trigger="open-modal">
+          <recipe-form @create="createRecipe" @cancel="cancelModal"/>
+      </ion-modal>
+
+      <recipe-container :recipes="recipes" @like="likeRecipe" :tab="3"/>
+
+      <ion-fab vertical="bottom" horizontal="end">
+        <ion-fab-button id="open-modal">
+          <ion-icon :icon="add"></ion-icon>
+        </ion-fab-button>
+      </ion-fab>
 
     </ion-content>
   </ion-page>
 </template>
 
 <script setup>
-import {IonPage, IonHeader, IonToolbar, IonTitle, IonContent, IonCard, IonCardContent, IonCardHeader, IonCardSubtitle, IonCardTitle, IonInput, IonItem, IonButton} from '@ionic/vue';
+import {IonPage, IonHeader, IonToolbar, IonTitle, IonContent, IonIcon, IonFab, IonFabButton, IonModal} from '@ionic/vue';
+import {add} from 'ionicons/icons';
 import ExploreContainer from '@/components/ExploreContainer.vue';
+import RecipeContainer from "@/components/RecipeContainer.vue";
+import RecipeForm from "@/components/RecipeForm.vue";
 </script>
 
 <script>
 export default {
+  components: {
+    RecipeContainer, RecipeForm
+  },
   data() {
     return {
       recipes: [
@@ -94,7 +67,9 @@ export default {
                   ingredient: 'Карри',
                   quantity: "5 г"
                 }
-              ]
+              ],
+          recipe_text:'Берем пучок укропа, потом баранья',
+          like: false,
         },
       ],
       my_recipe_name: '',
@@ -104,35 +79,24 @@ export default {
     }
   },
   methods: {
-    createRecipe() {
-      const newRecipe = {
-        id: Date.now(),
-        name: this.my_recipe_name,
-        calorie: this.my_recipe_calorie,
-        ingredients:
-        [
-          {
-            id: Date.now(),
-            ingredient: this.my_recipe_ingredient,
-            quantity: this.my_recipe_ingredient_quantity,
-
-          }
-        ]
-      }
-      this.recipes.push(newRecipe);
-      this.my_recipe_name = '';
-      this.my_recipe_calorie = '';
-      this.my_recipe_ingredient = '';
-      this.my_recipe_ingredient_quantity = '';
-
+    likeRecipe(recipe){
+      this.recipes.find(r => r.id === recipe.id).like = !this.recipes.find(r => r.id === recipe.id).like;
+      console.log(this.recipes.find(r => r.id === recipe.id).like);
     },
+    createRecipe(recipe) {
+      this.recipes.push(recipe);
+      this.$refs.modal_win.$el.dismiss(null, 'cancel');
+    },
+    removeRecipe(recipe) {
+      this.recipes = this.recipes.filter(r => r.id !== recipe.id)
+    },
+    cancelModal(){
+      this.$refs.modal_win.$el.dismiss(null, 'cancel');
+    }
   }
 }
 </script>
 
 <style scoped>
-ion-card-content {
-  padding-top: 0;
-  padding-bottom: 0;
-}
+
 </style>

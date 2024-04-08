@@ -6,23 +6,15 @@
       </ion-toolbar>
     </ion-header>
     <ion-content>
+<!--  <ExploreContainer name="Тут будет список любимых рецептов" />-->
 
-
-
-<!--      <ExploreContainer name="Тут будет список любимых рецептов" />-->
-      <ion-card v-for="recipe in recipes">
-        <ion-card-header>
-          <ion-card-title>{{ recipe.name }}</ion-card-title>
-          <ion-card-subtitle>{{ recipe.calorie }}</ion-card-subtitle>
-        </ion-card-header>
-        <ion-card-content v-for="ingredient in recipe.ingredients">{{ ingredient.ingredient }} {{ ingredient.quantity }}</ion-card-content>
-      </ion-card>
+      <recipe-container :recipes="recipes" @like="likeRecipe" :tab="1"/>
     </ion-content>
   </ion-page>
 </template>
 
 <script setup>
-import { IonPage, IonHeader, IonToolbar, IonTitle, IonContent, IonCard, IonCardContent, IonCardHeader, IonCardSubtitle, IonCardTitle } from '@ionic/vue';
+import { IonPage, IonHeader, IonToolbar, IonTitle, IonContent} from '@ionic/vue';
 
 import ExploreContainer from '@/components/ExploreContainer.vue';
 import RecipeContainer from '@/components/RecipeContainer.vue';
@@ -31,6 +23,9 @@ import RecipeContainer from '@/components/RecipeContainer.vue';
 
 <script>
 export default {
+  components: {
+    RecipeContainer,
+  },
   data() {
     return {
       recipes: [
@@ -61,10 +56,12 @@ export default {
                   ingredient: 'Карри',
                   quantity: "5 г"
                 }
-              ]
+              ],
+          recipe_text:'Берем пучок укропа, потом баранья',
+          like: true,
         },
         {
-          id: 1,
+          id: 2,
           name: 'Плов',
           calorie: '150.7 кКал',
           ingredients:
@@ -90,10 +87,12 @@ export default {
                   ingredient: 'Карри',
                   quantity: "5 г"
                 }
-              ]
+              ],
+          recipe_text:'Берем пучок укропа, потом баранья',
+          like: false,
         },
         {
-          id: 1,
+          id: 3,
           name: 'Плов',
           calorie: '150.7 кКал',
           ingredients:
@@ -119,10 +118,12 @@ export default {
                   ingredient: 'Карри',
                   quantity: "5 г"
                 }
-              ]
+              ],
+          recipe_text:'Берем пучок укропа, потом баранья',
+          like: false,
         },
         {
-          id: 2,
+          id: 4,
           name: 'Суп',
           calorie: '60 кКал',
           ingredients:
@@ -137,10 +138,12 @@ export default {
                   ingredient: 'Курица',
                   quantity: "1210 г"
                 }
-              ]
+              ],
+          recipe_text:'Берем пучок укропа, потом баранья',
+          like: true,
         },
         {
-          id: 2,
+          id: 5,
           name: 'Суп',
           calorie: '60 кКал',
           ingredients:
@@ -155,10 +158,12 @@ export default {
                   ingredient: 'Курица',
                   quantity: "1210 г"
                 }
-              ]
+              ],
+          recipe_text:'Берем пучок укропа, потом баранья',
+          like: false,
         },
         {
-          id: 2,
+          id: 6,
           name: 'Суп',
           calorie: '60 кКал',
           ingredients:
@@ -173,23 +178,22 @@ export default {
                   ingredient: 'Курица',
                   quantity: "1210 г"
                 }
-              ]
+              ],
+          recipe_text:'Берем пучок укропа, потом баранья',
+          like: false,
         }
       ],
     }
   },
   methods: {
-
+    likeRecipe(recipe){
+      this.recipes.find(r => r.id === recipe.id).like = !this.recipes.find(r => r.id === recipe.id).like;
+      console.log(this.recipes.find(r => r.id === recipe.id).like);
+    },
   }
 }
 </script>
 
-<style scoped>
-ion-card-content {
-  padding-top: 0;
-  padding-bottom: 0;
-}
-</style>
 
 
 
