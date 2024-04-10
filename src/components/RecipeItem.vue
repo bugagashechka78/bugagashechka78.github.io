@@ -61,6 +61,7 @@ export default {
       required: true
     }
   },
-  emits: ['like']
+  emits: ['like'],
+  emits: ['info']
 }
 </script>
