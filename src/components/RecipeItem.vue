@@ -1,5 +1,5 @@
 <template>
-  <ion-card>
+  <ion-card button="button" @click="$emit('info', recipe)">
     <ion-card-header>
       <ion-card-title>
         {{ recipe.name }}
@@ -7,12 +7,9 @@
           <ion-icon v-if="recipe.like === false" slot="icon-only" :icon="heartOutline"></ion-icon>
           <ion-icon v-else slot="icon-only" :icon="heart"></ion-icon>
         </ion-button>
-       
+
       </ion-card-title>
-      <ion-card-subtitle>{{ recipe.calorie }}
-         <ion-button @click="$emit('info', recipe)">Информация
-        </ion-button>
-      </ion-card-subtitle>
+      <ion-card-subtitle>{{ recipe.calorie }}</ion-card-subtitle>
     </ion-card-header>
     <ion-card-content v-for="ingredient in recipe.ingredients">
       {{ ingredient.ingredient }} {{ ingredient.quantity }}
@@ -26,6 +23,7 @@
 ion-card {
   padding-bottom: 25px;
 }
+
 ion-card-content {
   padding-top: 0;
   padding-bottom: 0;
@@ -37,7 +35,7 @@ ion-card-title {
   justify-content: space-between;
 }
 
-ion-card-subtitle{
+ion-card-subtitle {
   display: flex;
   align-items: center;
   justify-content: space-between;
@@ -61,7 +59,6 @@ export default {
       required: true
     }
   },
-  emits: ['like'],
-  emits: ['info']
+  emits: ['like', 'info'],
 }
 </script>

@@ -1,0 +1,56 @@
+{
+  "recipes": [
+    {
+      "name": "Плов",
+      "calorie": 150.5,
+      "proteins": 10.5,
+      "fats": 10.5,
+      "carbs": 10.5,
+      "category": "Гарнир",
+      "ingredients": [
+        {
+          "id": 1,
+          "ingredient": "Укроп",
+          "quantity": "100 г"
+        },
+        {
+          "id": 2,
+          "ingredient": "Баранина",
+          "quantity": "900 г"
+        },
+        {
+          "id": 3,
+          "ingredient": "Рис",
+          "quantity": "1400 г"
+        },
+        {
+          "id": 4,
+          "ingredient": "Карри",
+          "quantity": "5 г"
+        }
+      ],
+      "recipe_text": "Берем пучок укропа, потом баранья"
+    },
+    {
+      "name": "Суп",
+      "calorie": 150.5,
+      "proteins": 10.5,
+      "fats": 10.5,
+      "carbs": 10.5,
+      "category": "Первое",
+      "ingredients": [
+        {
+          "id": 1,
+          "ingredient": "Петрушка",
+          "quantity": "200 г"
+        },
+        {
+          "id": 2,
+          "ingredient": "Курица",
+          "quantity": "1210 г"
+        }
+      ],
+      "recipe_text": "Берем пучок укропа, потом баранья"
+    }
+  ]
+}

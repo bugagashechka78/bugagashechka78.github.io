@@ -2,7 +2,7 @@ import { CapacitorConfig } from '@capacitor/cli';
 
 const config: CapacitorConfig = {
   appId: 'io.ionic.starter',
-  appName: 'recipe-ionic',
+  appName: 'Cooking Note',
   webDir: 'dist',
   server: {
     androidScheme: 'https'

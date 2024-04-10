@@ -6,6 +6,7 @@
       :recipe="recipe"
       :key="recipe.id"
       @like="$emit('like', recipe)"
+      @info="$emit('info', recipe)"
   />
   <recipe-item
       v-else-if="(tab===1)"
@@ -13,6 +14,7 @@
       :recipe="recipe"
       :key="recipe.id"
       @like="$emit('like', recipe)"
+      @info="$emit('info', recipe)"
   />
 
 </template>
@@ -29,6 +31,7 @@ import RecipeItem from "./RecipeItem.vue";
 <script>
 
 export default {
+  name: "RecipeContainer",
   components: {RecipeItem},
   props: {
     recipes: {
@@ -40,6 +43,6 @@ export default {
       required: true
     }
   },
-  emits: ['like'],
+  emits: ['like', 'info'],
 }
 </script>

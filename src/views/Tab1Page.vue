@@ -8,26 +8,32 @@
     <ion-content>
 <!--  <ExploreContainer name="Тут будет список любимых рецептов" />-->
 
-      <recipe-container :recipes="recipes" @like="likeRecipe" :tab="1"/>
+      <recipe-container :recipes="recipes" @like="likeRecipe" @info="infoRecipeOpen"  :tab="1"/>
+
     </ion-content>
+    <ion-modal :is-open="isOpen">
+      <info-recipe @infoClose="infoRecipeClose"/>
+    </ion-modal>
   </ion-page>
 </template>
 
 <script setup>
-import { IonPage, IonHeader, IonToolbar, IonTitle, IonContent} from '@ionic/vue';
+import { IonPage, IonHeader, IonToolbar, IonTitle, IonContent, IonModal} from '@ionic/vue';
 
 import ExploreContainer from '@/components/ExploreContainer.vue';
 import RecipeContainer from '@/components/RecipeContainer.vue';
+import InfoRecipe from '@/components/InfoRecipe.vue';
 
 </script>
 
 <script>
 export default {
   components: {
-    RecipeContainer,
+    RecipeContainer, InfoRecipe,
   },
   data() {
     return {
+      isOpen: false,
       recipes: [
         {
           id: 1,
@@ -189,7 +195,20 @@ export default {
     likeRecipe(recipe){
       this.recipes.find(r => r.id === recipe.id).like = !this.recipes.find(r => r.id === recipe.id).like;
       console.log(this.recipes.find(r => r.id === recipe.id).like);
-    }
+    },
+    async infoRecipeOpen(recipe){
+      if (this.isOpen === true){
+        this.isOpen = false;
+        await new Promise(resolve => setTimeout(resolve, 10));
+      }
+      this.isOpen = true;
+      // console.log("Открытие информации о рецепте:", this.isOpen);
+      // console.log(this.recipes.find(r => r.id === recipe.id).id);
+    },
+    infoRecipeClose(){
+      this.isOpen = false;
+      // console.log("Закрытие информации о рецепте:", this.isOpen);
+    },
   }
 }
 </script>

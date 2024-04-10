@@ -12,7 +12,7 @@
           <recipe-form @create="createRecipe" @cancel="cancelModal"/>
       </ion-modal>
 
-      <recipe-container :recipes="recipes" @like="likeRecipe" :tab="3"/>
+      <recipe-container :recipes="recipes" @like="likeRecipe" @info="infoRecipeOpen"  :tab="3"/>
 
       <ion-fab vertical="bottom" horizontal="end">
         <ion-fab-button id="open-modal">
@@ -21,6 +21,9 @@
       </ion-fab>
 
     </ion-content>
+    <ion-modal :is-open="isOpen">
+      <info-recipe @infoClose="infoRecipeClose"/>
+    </ion-modal>
   </ion-page>
 </template>
 
@@ -30,15 +33,17 @@ import {add} from 'ionicons/icons';
 import ExploreContainer from '@/components/ExploreContainer.vue';
 import RecipeContainer from "@/components/RecipeContainer.vue";
 import RecipeForm from "@/components/RecipeForm.vue";
+import InfoRecipe from '@/components/InfoRecipe.vue';
 </script>
 
 <script>
 export default {
   components: {
-    RecipeContainer, RecipeForm
+    RecipeContainer, RecipeForm, InfoRecipe,
   },
   data() {
     return {
+      isOpen: false,
       recipes: [
         {
           id: 1,
@@ -92,7 +97,20 @@ export default {
     },
     cancelModal(){
       this.$refs.modal_win.$el.dismiss(null, 'cancel');
-    }
+    },
+    async infoRecipeOpen(recipe){
+      if (this.isOpen === true){
+        this.isOpen = false;
+        await new Promise(resolve => setTimeout(resolve, 10));
+      }
+      this.isOpen = true;
+      // console.log("Открытие информации о рецепте:", this.isOpen);
+      // console.log(this.recipes.find(r => r.id === recipe.id).id);
+    },
+    infoRecipeClose(){
+      this.isOpen = false;
+      // console.log("Закрытие информации о рецепте:", this.isOpen);
+    },
   }
 }
 </script>
