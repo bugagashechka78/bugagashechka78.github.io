@@ -10,7 +10,7 @@
 
 
 <!--      <ExploreContainer name="Тут будет список любимых рецептов" />-->
-      <ion-card v-for="recipe in recipes">
+      <ion-card v-for="recipe in recipes" @click="gotoContact()">
         <ion-card-header>
           <ion-card-title>{{ recipe.name }}</ion-card-title>
           <ion-card-subtitle>{{ recipe.calorie }}</ion-card-subtitle>
@@ -179,7 +179,7 @@ export default {
     }
   },
   methods: {
-
+      
   }
 }
 </script>
