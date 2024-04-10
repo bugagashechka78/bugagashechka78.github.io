@@ -22,6 +22,12 @@
           <ion-icon aria-hidden="true" :icon="readerOutline" />
           <ion-label>Прогресс</ion-label>
         </ion-tab-button>
+        
+        <ion-tab-button tab="tab5" href="/tabs/tab5">
+          <ion-icon aria-hidden="true" :icon="personCircleOutline" />
+          <ion-label>Профиль</ion-label>
+        </ion-tab-button>
+
       </ion-tab-bar>
     </ion-tabs>
   </ion-page>

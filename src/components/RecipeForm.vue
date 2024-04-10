@@ -137,7 +137,6 @@ export default {
         recipe_text: '',
         like: false,
       }
-
     }
   }
 }
