@@ -17,6 +17,11 @@
           <ion-icon aria-hidden="true" :icon="personOutline" />
           <ion-label>Моё</ion-label>
         </ion-tab-button>
+
+        <ion-tab-button tab="tab4" href="/tabs/tab4">
+          <ion-icon aria-hidden="true" :icon="readerOutline" />
+          <ion-label>Прогресс</ion-label>
+        </ion-tab-button>
       </ion-tab-bar>
     </ion-tabs>
   </ion-page>
@@ -24,5 +29,5 @@
 
 <script setup>
 import { IonTabBar, IonTabButton, IonTabs, IonLabel, IonIcon, IonPage, IonRouterOutlet } from '@ionic/vue';
-import { personOutline, bookOutline, heartOutline } from 'ionicons/icons';
+import { personOutline, bookOutline, heartOutline, readerOutline } from 'ionicons/icons';
 </script>
