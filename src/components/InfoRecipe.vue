@@ -88,13 +88,15 @@ export default {
 .energy_items{
   display: flex;  
   justify-content: space-around;
+
 }
 .item{
   list-style-type: none;
   display: flex;  
   flex-direction: column;
-  justify-content: center;
+  /*justify-content: center;*/
   text-align: center;
+  padding-left: 0px;
 }
 .item1{
   list-style-type: none;
