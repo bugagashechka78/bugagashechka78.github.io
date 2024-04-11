@@ -109,8 +109,8 @@ img {
   display: block;
   margin-left: auto;
   margin-right: auto;
-  width: 85%;
-  height: 85;
+  width: 90%;
+  height: 90%;
   border-radius: 4%;
   /*object-fit: cover;*/
 }
