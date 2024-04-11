@@ -8,11 +8,9 @@
     <ion-content>
 <!--      <ExploreContainer name="Тут будет список популярных рецептов" />-->
       <recipe-container :recipes="recipes" @like="likeRecipe" @info="infoRecipeOpen" :tab="2"/>
-
-
     </ion-content>
     <ion-modal :is-open="isOpen">
-      <info-recipe @infoClose="infoRecipeClose"/>
+      <info-recipe :recipe="infoRecipe"  @infoClose="infoRecipeClose"/>
     </ion-modal>
   </ion-page>
 </template>
@@ -31,11 +29,15 @@ export default {
   },
   data() {
     return {
+      infoRecipe: Object,
       recipes: [
         {
           id: 1,
           name: 'Плов',
           calorie: '150.7 кКал',
+          squirrels: '45 г',
+          fats: '88 г',
+          carbohydrates: '100 г',
           ingredients:
               [
                 {
@@ -67,6 +69,9 @@ export default {
           id: 2,
           name: 'Плов',
           calorie: '150.7 кКал',
+          squirrels: '45 г',
+          fats: '88 г',
+          carbohydrates: '100 г',
           ingredients:
               [
                 {
@@ -98,6 +103,9 @@ export default {
           id: 3,
           name: 'Плов',
           calorie: '150.7 кКал',
+          squirrels: '45 г',
+          fats: '88 г',
+          carbohydrates: '100 г',
           ingredients:
               [
                 {
@@ -129,6 +137,9 @@ export default {
           id: 4,
           name: 'Суп',
           calorie: '60 кКал',
+          squirrels: '45 г',
+          fats: '88 г',
+          carbohydrates: '100 г',
           ingredients:
               [
                 {
@@ -149,6 +160,9 @@ export default {
           id: 5,
           name: 'Суп',
           calorie: '60 кКал',
+          squirrels: '45 г',
+          fats: '88 г',
+          carbohydrates: '100 г',
           ingredients:
               [
                 {
@@ -169,6 +183,9 @@ export default {
           id: 6,
           name: 'Суп',
           calorie: '60 кКал',
+          squirrels: '45 г',
+          fats: '88 г',
+          carbohydrates: '100 г',
           ingredients:
               [
                 {
@@ -199,6 +216,7 @@ export default {
         this.isOpen = false;
         await new Promise(resolve => setTimeout(resolve, 10));
       }
+      this.infoRecipe = recipe;
       this.isOpen = true;
       // console.log("Открытие информации о рецепте:", this.isOpen);
       // console.log(this.recipes.find(r => r.id === recipe.id).id);
