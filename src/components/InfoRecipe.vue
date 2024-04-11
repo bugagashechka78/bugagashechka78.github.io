@@ -34,7 +34,7 @@
         <li>{{ recipe.carbohydrates }}</li>
       </ul>
     </ion-card-subtitle>
-    <ion-card-content> Время приготовления - 30 мин</ion-card-content>
+    <ion-card-content> Время приготовления ~ 30 мин</ion-card-content>
 
     <ion-card>
       <ion-card-header>
@@ -78,8 +78,6 @@ export default {
 
 .name{
   text-align: center;
-  /*font-size: 1.5rem;
-  font-weight: 600;*/
 }
 .energy{
   margin-top: 3%;
@@ -110,8 +108,8 @@ img {
   display: block;
   margin-left: auto;
   margin-right: auto;
-  width: 50%;
-  height: 50%;
+  width: 85%;
+  height: 85;
   border-radius: 4%;
   /*object-fit: cover;*/
 }
