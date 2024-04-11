@@ -14,9 +14,9 @@
       <img
     src="https://ionic-docs-demo-v7.vercel.app/assets/madison.jpg"></img>
     </div>
-    <div class = "name">{{ recipe.name }}</div>
-    <div class = "energy">Энергетическая ценность на порцию</div>
-    <div class = "energy_items">
+    <ion-title class = "name">{{ recipe.name }}</ion-title>
+    <ion-card-subtitle class = "energy">Энергетическая ценность на порцию</ion-card-subtitle>
+    <ion-card-subtitle class = "energy_items">
       <ul class="item">
         <li>Калорийность</li>
         <li>{{ recipe.calorie }}</li>
@@ -33,23 +33,22 @@
         <li>Углеводы</li>
         <li>{{ recipe.carbohydrates }}</li>
       </ul>
-    </div>
-    <div class = "energy">Ингредиенты</div>
-    <ul class="leaders">
-      <li>
-          <span>{{ recipe.ingredients[0].ingredient }}</span>
-          <span>{{ recipe.ingredients[0].quantity  }}</span>
-      </li>
-      <li>
-        <span>{{ recipe.ingredients[1].ingredient }}</span>
-          <span>{{ recipe.ingredients[1].quantity  }}</span>
-      </li>
-      <li>
-        <span>{{ recipe.ingredients[2].ingredient }}</span>
-          <span>{{ recipe.ingredients[2].quantity  }}</span>
-      </li>
-    </ul>
-    <div class = "energy">Способ приготовления</div>
+    </ion-card-subtitle>
+    <ion-card-content> Время приготовления - 30 мин</ion-card-content>
+
+    <ion-card>
+      <ion-card-header>
+        <ion-card-title>Список ингредиентов</ion-card-title>
+      </ion-card-header>
+      <ion-card-content v-for="ingredient in recipe.ingredients">
+        {{ ingredient.ingredient }} {{ ingredient.quantity }}
+      </ion-card-content>
+    </ion-card>
+    <ion-title class = "name">Способ приготовления</ion-title>
+    <ion-card-subtitle> Ничего сложного в приготовлении этого вкусного
+       и сытного блюда нет, самое главное — соблюдать основные правила приготовления. Результат
+        приятно удивит и вас и ваших родных, плов получится вкусным. 
+      </ion-card-subtitle>
     <ion-button @click="" expand="full">Хочу съесть
     </ion-button>
 <!--    Сюда нужно будет писать информацию о рецепте -->
@@ -57,8 +56,8 @@
 </template>
 
 <script setup>
-import { IonHeader, IonToolbar, IonTitle, IonContent, IonButtons, IonButton, IonIcon } from '@ionic/vue';
-import {chevronBackOutline} from 'ionicons/icons';
+import { IonHeader, IonToolbar,IonCard, IonCardContent, IonTitle, IonContent, IonButtons, IonButton, IonIcon } from '@ionic/vue';
+import {chevronBackOutline, heart} from 'ionicons/icons';
 </script>
 
 <script>
@@ -76,42 +75,17 @@ export default {
 </script>
 
 <style scoped>
-ul.leaders {
-    max-width: 40em;
-    margin-right: 2%;
-    overflow-x: hidden;
-    list-style: none
-}
-ul.leaders li:before {
-    float: left;
-    width: 0;
-    white-space: nowrap;
-    content:"...................."
-            "...................."
-            "...................."
-            "...................."
-            "...................."
-            "...................."
-}
-ul.leaders span:first-child {
-    padding-right: 0.33em;
-    background: white
-}
-ul.leaders span + span {
-    float: right;
-    padding-left: 0.15em;
-    background: white
-}
+
 .name{
   text-align: center;
-  font-size: 1.5rem;
-  font-weight: 600;
+  /*font-size: 1.5rem;
+  font-weight: 600;*/
 }
 .energy{
   margin-top: 3%;
   text-align: center;
-  font-size: 1.2rem;
-  font-weight: 600;
+  font-size: 1rem;
+  color: black;
 }
 .energy_items{
   display: flex;  
