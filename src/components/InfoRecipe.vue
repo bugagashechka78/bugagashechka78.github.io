@@ -45,10 +45,10 @@
       </ion-card-content>
     </ion-card>
     <ion-title class = "name">Способ приготовления</ion-title>
-    <ion-card-subtitle> Ничего сложного в приготовлении этого вкусного
+    <ion-card-content> Ничего сложного в приготовлении этого вкусного
        и сытного блюда нет, самое главное — соблюдать основные правила приготовления. Результат
         приятно удивит и вас и ваших родных, плов получится вкусным. 
-      </ion-card-subtitle>
+      </ion-card-content>
     <ion-button @click="" expand="full">Хочу съесть
     </ion-button>
 <!--    Сюда нужно будет писать информацию о рецепте -->
@@ -88,7 +88,6 @@ export default {
 .energy_items{
   display: flex;  
   justify-content: space-around;
-  text-align: center;
 }
 .item{
   list-style-type: none;
