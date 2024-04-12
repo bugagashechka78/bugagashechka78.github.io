@@ -6,9 +6,9 @@
       </ion-toolbar>
     </ion-header>
     <ion-content>
-<!--  <ExploreContainer name="Тут будет список любимых рецептов" />-->
+      <!--  <ExploreContainer name="Тут будет список любимых рецептов" />-->
 
-      <recipe-container :recipes="recipes" @like="likeRecipe" @info="infoRecipeOpen"  :tab="1"/>
+      <recipe-container :recipes="recipes" @info="infoRecipeOpen" :tab="1"/>
 
     </ion-content>
     <ion-modal :is-open="isOpen">
@@ -18,7 +18,7 @@
 </template>
 
 <script setup>
-import { IonPage, IonHeader, IonToolbar, IonTitle, IonContent, IonModal} from '@ionic/vue';
+import {IonPage, IonHeader, IonToolbar, IonTitle, IonContent, IonModal} from '@ionic/vue';
 
 import ExploreContainer from '@/components/ExploreContainer.vue';
 import RecipeContainer from '@/components/RecipeContainer.vue';
@@ -28,9 +28,6 @@ import InfoRecipe from '@/components/InfoRecipe.vue';
 
 <script>
 export default {
-  components: {
-    RecipeContainer, InfoRecipe,
-  },
   data() {
     return {
       recipeToModal: Object,
@@ -64,7 +61,7 @@ export default {
                   quantity: "5 г"
                 }
               ],
-          recipe_text:'Берем пучок укропа, потом баранья',
+          recipe_text: 'Берем пучок укропа, потом баранья',
           like: true,
         },
         {
@@ -95,7 +92,7 @@ export default {
                   quantity: "5 г"
                 }
               ],
-          recipe_text:'Берем пучок укропа, потом баранья',
+          recipe_text: 'Берем пучок укропа, потом баранья',
           like: false,
         },
         {
@@ -126,7 +123,7 @@ export default {
                   quantity: "5 г"
                 }
               ],
-          recipe_text:'Берем пучок укропа, потом баранья',
+          recipe_text: 'Берем пучок укропа, потом баранья',
           like: false,
         },
         {
@@ -146,7 +143,7 @@ export default {
                   quantity: "1210 г"
                 }
               ],
-          recipe_text:'Берем пучок укропа, потом баранья',
+          recipe_text: 'Берем пучок укропа, потом баранья',
           like: true,
         },
         {
@@ -166,7 +163,7 @@ export default {
                   quantity: "1210 г"
                 }
               ],
-          recipe_text:'Берем пучок укропа, потом баранья',
+          recipe_text: 'Берем пучок укропа, потом баранья',
           like: false,
         },
         {
@@ -186,20 +183,15 @@ export default {
                   quantity: "1210 г"
                 }
               ],
-          recipe_text:'Берем пучок укропа, потом баранья',
+          recipe_text: 'Берем пучок укропа, потом баранья',
           like: false,
         }
       ],
     }
   },
   methods: {
-    likeRecipe(recipe){
-
-      this.recipes.find(r => r.id === recipe.id).like = !this.recipes.find(r => r.id === recipe.id).like;
-      console.log(this.recipes.find(r => r.id === recipe.id).like);
-    },
-    async infoRecipeOpen(recipe){
-      if (this.isOpen === true){
+    async infoRecipeOpen(recipe) {
+      if (this.isOpen === true) {
         this.isOpen = false;
         await new Promise(resolve => setTimeout(resolve, 10));
       }
@@ -208,7 +200,7 @@ export default {
       // console.log("Открытие информации о рецепте:", this.isOpen);
       // console.log(this.recipes.find(r => r.id === recipe.id).id);
     },
-    infoRecipeClose(){
+    infoRecipeClose() {
       this.isOpen = false;
       // console.log("Закрытие информации о рецепте:", this.isOpen);
     },

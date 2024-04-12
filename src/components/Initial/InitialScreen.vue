@@ -13,8 +13,6 @@ import {IonImg} from "@ionic/vue";
 </script>
 
 <script>
-import {defineComponent} from "vue";
-
 export default {
   name: "InitialScreen",
 }
