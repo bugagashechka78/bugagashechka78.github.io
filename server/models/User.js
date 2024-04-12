@@ -12,18 +12,18 @@ const UserSchema = new mongoose.Schema({
         required: true
     },
     myRecipes: [{
-        name: {type: String, required: true},
-        calorie: {type: Number, required: true},
-        proteins: {type: Number, required: true},
-        fats: {type: Number, required: true},
-        carbs: {type: Number, required: true},
-        recipeText: {type: String, required: true},
-        picture: {type: Image, required: true},
-        category: {type: String, required: true},
+        name: {type: String, required: false},
+        calorie: {type: Number, required: false},
+        proteins: {type: Number, required: false},
+        fats: {type: Number, required: false},
+        carbs: {type: Number, required: false},
+        recipeText: {type: String, required: false},
+        // picture: {type: Image, required: false},
+        category: {type: String, required: false},
 
         ingredients: [{
             ingredientId: {type: mongoose.Schema.Types.ObjectId, ref: 'ingredientsAll'},
-            quantity: {type: Number, required: true},
+            quantity: {type: Number, required: false},
         }]
     }],
     likeMy: [{

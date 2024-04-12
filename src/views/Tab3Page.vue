@@ -85,6 +85,7 @@ export default {
   },
   methods: {
     likeRecipe(recipe){
+
       this.recipes.find(r => r.id === recipe.id).like = !this.recipes.find(r => r.id === recipe.id).like;
       console.log(this.recipes.find(r => r.id === recipe.id).like);
     },

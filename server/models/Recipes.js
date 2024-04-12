@@ -8,7 +8,7 @@ let recipesSchema = new mongoose.Schema({
     fats: {type: Number, required: true},
     carbs: {type: Number, required: true},
     recipeText: {type: String, required: true},
-    picture: {type: Image, required: true},
+    // picture: {type: Image, required: true},
     category: {type: String, required: true},
 
     ingredients: [{

@@ -12,7 +12,7 @@
 
     </ion-content>
     <ion-modal :is-open="isOpen">
-      <info-recipe @infoClose="infoRecipeClose"/>
+      <info-recipe @infoClose="infoRecipeClose" :recipe="recipeToModal"/>
     </ion-modal>
   </ion-page>
 </template>
@@ -33,6 +33,7 @@ export default {
   },
   data() {
     return {
+      recipeToModal: Object,
       isOpen: false,
       recipes: [
         {
@@ -193,6 +194,7 @@ export default {
   },
   methods: {
     likeRecipe(recipe){
+
       this.recipes.find(r => r.id === recipe.id).like = !this.recipes.find(r => r.id === recipe.id).like;
       console.log(this.recipes.find(r => r.id === recipe.id).like);
     },
@@ -201,6 +203,7 @@ export default {
         this.isOpen = false;
         await new Promise(resolve => setTimeout(resolve, 10));
       }
+      this.recipeToModal = recipe;
       this.isOpen = true;
       // console.log("Открытие информации о рецепте:", this.isOpen);
       // console.log(this.recipes.find(r => r.id === recipe.id).id);
