@@ -15,7 +15,7 @@
           src="https://ionic-docs-demo-v7.vercel.app/assets/madison.jpg"/>
     </div>
     <ion-title class="name">{{ recipe.name }}</ion-title>
-    <ion-card-subtitle class="energy">Энергетическая ценность на порцию</ion-card-subtitle>
+    <ion-title class="energy">Энергетическая ценность на порцию</ion-title>
     <ion-card-subtitle class="energy_items">
       <ul class="item">
         <li>Калорийность</li>
@@ -97,7 +97,6 @@ export default {
   margin-top: 3%;
   text-align: center;
   font-size: 1rem;
-  color: black;
 }
 
 .energy_items {
