@@ -5,7 +5,7 @@ const config: CapacitorConfig = {
   appName: 'Cooking Note',
   webDir: 'dist',
   server: {
-    androidScheme: 'https'
+    androidScheme: 'http'
   }
 };
 

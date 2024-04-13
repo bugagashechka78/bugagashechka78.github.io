@@ -9,10 +9,10 @@
     <ion-content>
 
       <ion-modal ref='modal_win' trigger="open-modal">
-          <recipe-form @create="createRecipe" @cancel="cancelModal"/>
+        <recipe-form @create="createRecipe" @cancel="cancelModal"/>
       </ion-modal>
 
-      <recipe-container :recipes="recipes" @like="likeRecipe" @info="infoRecipeOpen"  :tab="3"/>
+      <recipe-container :recipes="recipes" @info="infoRecipeOpen" :tab="3"/>
 
       <ion-fab vertical="bottom" horizontal="end">
         <ion-fab-button id="open-modal">
@@ -28,7 +28,17 @@
 </template>
 
 <script setup>
-import {IonPage, IonHeader, IonToolbar, IonTitle, IonContent, IonIcon, IonFab, IonFabButton, IonModal} from '@ionic/vue';
+import {
+  IonPage,
+  IonHeader,
+  IonToolbar,
+  IonTitle,
+  IonContent,
+  IonIcon,
+  IonFab,
+  IonFabButton,
+  IonModal
+} from '@ionic/vue';
 import {add} from 'ionicons/icons';
 import ExploreContainer from '@/components/ExploreContainer.vue';
 import RecipeContainer from "@/components/RecipeContainer.vue";
@@ -38,9 +48,6 @@ import InfoRecipe from '@/components/InfoRecipe.vue';
 
 <script>
 export default {
-  components: {
-    RecipeContainer, RecipeForm, InfoRecipe,
-  },
   data() {
     return {
       isOpen: false,
@@ -73,7 +80,7 @@ export default {
                   quantity: "5 г"
                 }
               ],
-          recipe_text:'Берем пучок укропа, потом баранья',
+          recipe_text: 'Берем пучок укропа, потом баранья',
           like: false,
         },
       ],
@@ -84,10 +91,6 @@ export default {
     }
   },
   methods: {
-    likeRecipe(recipe){
-      this.recipes.find(r => r.id === recipe.id).like = !this.recipes.find(r => r.id === recipe.id).like;
-      console.log(this.recipes.find(r => r.id === recipe.id).like);
-    },
     createRecipe(recipe) {
       this.recipes.push(recipe);
       this.$refs.modal_win.$el.dismiss(null, 'cancel');
@@ -95,11 +98,11 @@ export default {
     removeRecipe(recipe) {
       this.recipes = this.recipes.filter(r => r.id !== recipe.id)
     },
-    cancelModal(){
+    cancelModal() {
       this.$refs.modal_win.$el.dismiss(null, 'cancel');
     },
-    async infoRecipeOpen(recipe){
-      if (this.isOpen === true){
+    async infoRecipeOpen(recipe) {
+      if (this.isOpen === true) {
         this.isOpen = false;
         await new Promise(resolve => setTimeout(resolve, 10));
       }
@@ -107,7 +110,7 @@ export default {
       // console.log("Открытие информации о рецепте:", this.isOpen);
       // console.log(this.recipes.find(r => r.id === recipe.id).id);
     },
-    infoRecipeClose(){
+    infoRecipeClose() {
       this.isOpen = false;
       // console.log("Закрытие информации о рецепте:", this.isOpen);
     },

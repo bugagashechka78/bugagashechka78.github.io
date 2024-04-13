@@ -2,7 +2,6 @@
   "name": "recipe-ionic",
   "private": true,
   "version": "0.0.1",
-  "type": "module",
   "scripts": {
     "dev": "vite",
     "serve": "ionic serve",
@@ -22,6 +21,8 @@
     "@capacitor/status-bar": "5.0.7",
     "@ionic/vue": "^7.0.0",
     "@ionic/vue-router": "^7.0.0",
+    "@nestjs/passport": "^10.0.3",
+    "axios": "^1.6.8",
     "bcrypt": "^5.1.1",
     "components": "^0.1.0",
     "cors": "^2.8.5",
@@ -29,8 +30,9 @@
     "express": "^4.19.2",
     "ionicons": "^7.0.0",
     "jsonwebtoken": "^9.0.2",
-    "mongoose": "^8.3.1",
+    "mongoose": "^6.4.2",
     "passport": "^0.7.0",
+    "passport-jwt": "^4.0.1",
     "vue": "^3.3.0",
     "vue-router": "^4.2.0"
   },

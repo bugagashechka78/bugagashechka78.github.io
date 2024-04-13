@@ -90,9 +90,13 @@ import {
   IonCardContent,
   IonCardHeader,
   IonCardTitle,
-  IonCardSubtitle
+  IonCardSubtitle,
+  IonHeader,
+  IonToolbar,
+  IonTitle,
+  IonContent,
+  IonIcon
 } from '@ionic/vue';
-import {IonHeader, IonToolbar, IonTitle, IonContent, IonIcon} from '@ionic/vue';
 import {chevronBackOutline, checkmark} from 'ionicons/icons';
 </script>
 

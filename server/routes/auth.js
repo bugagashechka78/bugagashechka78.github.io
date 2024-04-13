@@ -10,22 +10,39 @@ const User = require("../models/User");
 router.use(cors());
 
 router.post('/register', async (req, res) => {
+    console.log(req.body);
     if (!req.body.username || !req.body.password) {
         res.json({success: false, msg: 'Please pass username and password.'});
     } else {
         const newUser = new User(req.body);
         await newUser.save()
-            .then(() => res.json({success: true, msg: 'Successful created new user.'}))
-            .catch(() => res.json({success: false, msg: 'Username already exists.'}));
+            .then(() => {
+                res.setHeader('Access-Control-Allow-Origin', '*');
+                res.setHeader('Access-Control-Allow-Methods', 'GET, POST, OPTIONS, PUT, PATCH, DELETE'); // If needed
+                res.setHeader('Access-Control-Allow-Headers', 'X-Requested-With,contenttype'); // If needed
+                res.setHeader('Access-Control-Allow-Credentials', true); // If needed
+                res.json({success: true, msg: 'Successful created new user.'})
+            })
+            .catch(() => {
+                res.setHeader('Access-Control-Allow-Origin', '*');
+                res.setHeader('Access-Control-Allow-Methods', 'GET, POST, OPTIONS, PUT, PATCH, DELETE'); // If needed
+                res.setHeader('Access-Control-Allow-Headers', 'X-Requested-With,contenttype'); // If needed
+                res.setHeader('Access-Control-Allow-Credentials', true); // If needed
+                res.json({success: false, msg: 'Username already exists.'})
+            });
     }
 });
 
 router.post('/login', function(req, res) {
+    console.log(req.body);
     User.findOne({
         username: req.body.username
     }, function(err, user) {
         if (err) throw err;
-
+        res.setHeader('Access-Control-Allow-Origin', '*');
+        res.setHeader('Access-Control-Allow-Methods', 'GET, POST, OPTIONS, PUT, PATCH, DELETE'); // If needed
+        res.setHeader('Access-Control-Allow-Headers', 'X-Requested-With,contenttype'); // If needed
+        res.setHeader('Access-Control-Allow-Credentials', true); // If needed
         if (!user) {
             res.status(401).send({success: false, msg: 'Authentication failed. User not found.'});
         } else {

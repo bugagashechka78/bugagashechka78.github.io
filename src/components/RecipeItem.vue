@@ -1,9 +1,9 @@
 <template>
-  <ion-card button="button" @click="$emit('info', recipe)">
+  <ion-card button="button" @click="confirmClick($event,'info')">
     <ion-card-header>
       <ion-card-title>
         {{ recipe.name }}
-        <ion-button @click="$emit('like', recipe)" fill="clear">
+        <ion-button @click="confirmClick($event,'like')" fill="clear" class="like-button">
           <ion-icon v-if="recipe.like === false" slot="icon-only" :icon="heartOutline"></ion-icon>
           <ion-icon v-else slot="icon-only" :icon="heart"></ion-icon>
         </ion-button>
@@ -14,12 +14,14 @@
     <ion-card-content v-for="ingredient in recipe.ingredients">
       {{ ingredient.ingredient }} {{ ingredient.quantity }}
     </ion-card-content>
-
-
   </ion-card>
 </template>
 
 <style scoped>
+.like-button {
+  z-index: 1000;
+}
+
 ion-card {
   padding-bottom: 25px;
 }
@@ -60,5 +62,12 @@ export default {
     }
   },
   emits: ['like', 'info'],
+  methods: {
+    confirmClick(click, emit_type){
+      click.preventDefault();
+      click.stopPropagation();
+      this.$emit(emit_type, this.recipe);
+    }
+  }
 }
 </script>

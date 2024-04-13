@@ -7,12 +7,14 @@
   </div>
 </template>
 
-<script>
-import {IonImg} from "@ionic/vue";
 
+<script setup>
+import {IonImg} from "@ionic/vue";
+</script>
+
+<script>
 export default {
   name: "InitialScreen",
-  components: {IonImg},
 }
 </script>
 
