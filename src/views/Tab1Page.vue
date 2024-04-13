@@ -65,6 +65,7 @@ export default {
               ],
           recipe_text:'Берем пучок укропа, потом баранья',
           like: true,
+          ate: false,
         },
         {
           id: 2,
@@ -96,6 +97,7 @@ export default {
               ],
           recipe_text:'Берем пучок укропа, потом баранья',
           like: false,
+          ate: false,
         },
         {
           id: 3,
@@ -127,6 +129,7 @@ export default {
               ],
           recipe_text:'Берем пучок укропа, потом баранья',
           like: false,
+          ate: false,
         },
         {
           id: 4,
@@ -147,6 +150,7 @@ export default {
               ],
           recipe_text:'Берем пучок укропа, потом баранья',
           like: true,
+          ate: false,
         },
         {
           id: 5,
@@ -167,6 +171,7 @@ export default {
               ],
           recipe_text:'Берем пучок укропа, потом баранья',
           like: false,
+          ate: false,
         },
         {
           id: 6,
@@ -187,6 +192,7 @@ export default {
               ],
           recipe_text:'Берем пучок укропа, потом баранья',
           like: false,
+          ate: true,
         }
       ],
     }

@@ -49,7 +49,7 @@
        и сытного блюда нет, самое главное — соблюдать основные правила приготовления. Результат
         приятно удивит и вас и ваших родных, плов получится вкусным. 
       </ion-card-content>
-    <ion-button @click="" expand="full">Хочу съесть
+    <ion-button @click="want_to_eat" expand="full">Хочу съесть
     </ion-button>
 <!--    Сюда нужно будет писать информацию о рецепте -->
   </ion-content>
@@ -57,7 +57,7 @@
 
 <script setup>
 import { IonHeader, IonToolbar,IonCard, IonCardContent, IonTitle, IonContent, IonButtons, IonButton, IonIcon } from '@ionic/vue';
-import {chevronBackOutline, heart} from 'ionicons/icons';
+import {chevronBackOutline} from 'ionicons/icons';
 </script>
 
 <script>
@@ -68,6 +68,9 @@ export default {
       type: Object,
       required: true
     }
+  },
+  want_to_eat(recipe){
+    this.recipe.ate = true;
   },
   name: "InfoRecipe",
   emits: ["infoClose"]
