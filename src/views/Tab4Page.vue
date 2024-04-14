@@ -17,4 +17,25 @@
 import {IonPage, IonHeader, IonToolbar, IonTitle, IonContent} from '@ionic/vue';
 import ExploreContainer from '@/components/ExploreContainer.vue';
 import RecipeContainer from '@/components/RecipeContainer.vue';
+import RecipeItem from '@/components/RecipeItem.vue';
+/*<ExploreContainer name="Здесь планируется создать график пониторинга потребленных к/б/ж/у, а также названия съеденных блюд" />*/
 </script>
+
+<script>
+
+export default {
+  props: {
+    recipe: {
+      type: Object,
+      required: true
+    }
+  },
+  methods:{
+    wantRecipe(recipe){
+        this.recipe.find(r => r.id === recipe.id).ate= !this.recipe.find(r => r.id === recipe.id).ate;
+        console.log(this.recipe.find(r => r.id === recipe.id).ate);
+      }
+    }
+}
+</script>
+

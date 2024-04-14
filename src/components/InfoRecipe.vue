@@ -46,9 +46,9 @@
     </ion-card>
     <ion-title class="name">Способ приготовления</ion-title>
     <ion-card-content> Ничего сложного в приготовлении этого вкусного
-      и сытного блюда нет, самое главное — соблюдать основные правила приготовления. Результат
-      приятно удивит и вас и ваших родных, плов получится вкусным.
-    </ion-card-content>
+       и сытного блюда нет, самое главное — соблюдать основные правила приготовления. Результат
+        приятно удивит и вас и ваших родных, плов получится вкусным. 
+      </ion-card-content>
     <ion-button @click="" expand="full">Хочу съесть
     </ion-button>
     <!--    Сюда нужно будет писать информацию о рецепте -->
@@ -56,20 +56,7 @@
 </template>
 
 <script setup>
-import {
-  IonHeader,
-  IonToolbar,
-  IonCard,
-  IonCardContent,
-  IonTitle,
-  IonContent,
-  IonButtons,
-  IonButton,
-  IonIcon,
-  IonCardSubtitle,
-  IonCardHeader,
-  IonCardTitle
-} from '@ionic/vue';
+import { IonHeader, IonToolbar,IonCard, IonCardContent, IonTitle, IonContent, IonButtons, IonButton, IonIcon } from '@ionic/vue';
 import {chevronBackOutline, heart} from 'ionicons/icons';
 </script>
 
@@ -81,6 +68,9 @@ export default {
       type: Object,
       required: true
     }
+  },
+  want_to_eat(recipe){
+    this.recipe.ate = true;
   },
   name: "InfoRecipe",
   emits: ["infoClose"]
