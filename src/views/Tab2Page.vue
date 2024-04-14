@@ -1,12 +1,26 @@
 <template>
   <ion-page>
-    <ion-header>
-      <ion-toolbar>
-        <ion-title>Популярные рецепты</ion-title>
-      </ion-toolbar>
-    </ion-header>
+    <!--    <ion-header>-->
+    <!--      <ion-toolbar>-->
+    <!--        <ion-title>Популярные рецепты</ion-title>-->
+    <!--      </ion-toolbar>-->
+    <!--    </ion-header>-->
+
+
+    <ion-searchbar placeholder="Поиск рецепта" class="custom"></ion-searchbar>
+    <ion-label class="categories_label"><b>Категории</b></ion-label>
+    <br/>
+
+      <ion-tab-bar slot="top">
+        <ion-tab-button v-for="n in 10" tab="account">
+          <img class="categories_img" alt="Десерт" src="/public/favicon.png"/>
+          <ion-label>Десерты</ion-label>
+        </ion-tab-button>
+      </ion-tab-bar>
+
+
+    <!--      <ExploreContainer name="Тут будет список популярных рецептов" />-->
     <ion-content>
-      <!--      <ExploreContainer name="Тут будет список популярных рецептов" />-->
       <recipe-container :recipes="recipes" @info="infoRecipeOpen" :tab="2"/>
     </ion-content>
     <ion-modal :is-open="isOpen">
@@ -16,7 +30,20 @@
 </template>
 
 <script setup>
-import {IonPage, IonHeader, IonToolbar, IonTitle, IonContent, IonModal} from '@ionic/vue';
+import {
+  IonPage,
+  IonSearchbar,
+  IonIcon,
+  IonTabBar, IonTabButton, IonTabs,
+  IonHeader,
+  IonLabel,
+  IonTitle,
+  IonNote,
+  IonAvatar,
+  IonContent,
+  IonModal
+} from '@ionic/vue';
+import { call, person, settings } from 'ionicons/icons';
 import ExploreContainer from '@/components/ExploreContainer.vue';
 import RecipeContainer from '@/components/RecipeContainer.vue';
 import InfoRecipe from '@/components/InfoRecipe.vue';
@@ -222,3 +249,16 @@ export default {
 };
 
 </script>
+
+<style>
+ion-searchbar.custom {
+  --border-radius: 500px;
+}
+img.categories_img{
+  max-width: 3vh;
+  max-height: 3vh;
+}
+.categories_label {
+  margin-left: 5vw;
+}
+</style>

@@ -1,43 +1,53 @@
 <template>
   <ion-page>
+    <ion-content>
 
+      <ion-text color="dark"><h1 class="header1"><b>CookingNote</b></h1></ion-text>
+      <br/>
 
-    <ion-card class="login-form">
-      <ion-card-header>
-        Авторизация
-      </ion-card-header>
+      <ion-segment value="login">
+        <ion-segment-button value="register" @click.stop="handleRegisterButton">
+          <ion-label>Регистрация</ion-label>
+        </ion-segment-button>
 
-      <ion-input
-          class="input"
-          placeholder="Логин"
-          v-model="login.username"
+        <ion-segment-button value="login">
+          <ion-label>Вход</ion-label>
+        </ion-segment-button>
+      </ion-segment>
+      <br/><br/><br/>
+
+      <ion-input class="login-form"
+                 label="Логин"
+                 label-placement="floating"
+                 fill="outline"
+                 placeholder="Введите логин"
+                 v-model="login.username"
       />
-      <ion-input
-          class="input"
-          type="password"
-          placeholder="Пароль"
-          v-model="login.password"
+      <br/><br/>
+      <ion-input class="login-form"
+                 label="Пароль"
+                 label-placement="floating"
+                 fill="outline"
+                 type="password"
+                 placeholder="Введите пароль"
+                 v-model="login.password"
       />
 
-      <ion-button
+    </ion-content>
 
-          @click="handleSubmitButton"
-      >
-        Войти
-      </ion-button>
-      <ion-button
-
-          @click.stop="handleRegisterButton"
-      >
-        Регистрация
-      </ion-button>
-
-    </ion-card>
+    <ion-button
+        class="login-button"
+        size="large"
+        expand="block"
+        @click="handleSubmitButton"
+    >
+      Войти
+    </ion-button>
   </ion-page>
 </template>
 
 <script setup>
-import {IonButton, IonCard, IonInput, IonCardHeader, IonPage} from "@ionic/vue";
+import {IonButton, IonInput, IonSegment, IonSegmentButton, IonLabel, IonPage, IonContent, IonText} from "@ionic/vue";
 import {useRouter} from "vue-router";
 import {ref} from "vue";
 import axios from "axios";
@@ -70,16 +80,24 @@ const handleRegisterButton = () => {
 </script>
 
 <style>
-.login-form {
-  max-width: 300px;
-  position: absolute;
-  left: 0;
-  right: 0;
-  margin: auto;
-  text-align: center;
-}
 
-.input {
-  text-align: left;
+@import url('https://fonts.googleapis.com/css2?family=Alegreya+Sans+SC:ital,wght@0,100;0,300;0,400;0,500;0,700;0,800;0,900;1,100;1,300;1,400;1,500;1,700;1,800;1,900&display=swap');
+
+.login-form {
+  margin: auto;
+  max-width: 86vw;
+}
+.login-button{
+  margin-left: auto;
+  margin-right: auto;
+  margin-bottom: 10vh;
+  min-width: 66vw;
+}
+.header1{
+  font-size: 8vh;
+  text-align: center;
+  font-family: "Alegreya Sans SC", sans-serif;
+  font-weight: 500;
+  font-style: normal;
 }
 </style>

@@ -1,13 +1,14 @@
 <template>
   <ion-page>
-    <ion-header>
-      <ion-toolbar>
-        <ion-title>Избранные рецепты</ion-title>
-      </ion-toolbar>
-    </ion-header>
+<!--    <ion-header>-->
+<!--      <ion-toolbar>-->
+<!--        <ion-title>Избранные рецепты</ion-title>-->
+<!--      </ion-toolbar>-->
+<!--    </ion-header>-->
     <ion-content>
       <!--  <ExploreContainer name="Тут будет список любимых рецептов" />-->
 
+      <ion-searchbar placeholder="Поиск избранного рецепта" class="custom"></ion-searchbar>
       <recipe-container :recipes="recipes" @info="infoRecipeOpen" :tab="1"/>
 
     </ion-content>
@@ -18,7 +19,7 @@
 </template>
 
 <script setup>
-import {IonPage, IonHeader, IonToolbar, IonTitle, IonContent, IonModal} from '@ionic/vue';
+import {IonPage, IonHeader, IonSearchbar, IonToolbar, IonTitle, IonContent, IonModal} from '@ionic/vue';
 
 import ExploreContainer from '@/components/ExploreContainer.vue';
 import RecipeContainer from '@/components/RecipeContainer.vue';
@@ -207,6 +208,12 @@ export default {
   }
 }
 </script>
+
+<style>
+ion-searchbar.custom {
+  --border-radius: 500px;
+}
+</style>
 
 
 

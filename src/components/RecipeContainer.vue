@@ -1,5 +1,6 @@
 <template>
   <div>
+
     <ExploreContainer v-if="(recipes.length < 1)" name="К сожалению, здесь пока нет рецептов"/>
     <recipe-item
         v-else-if="(tab===2)||(tab===3)"
@@ -17,6 +18,7 @@
         @like="likeRecipe"
         @info="$emit('info', recipe)"
     />
+
   </div>
 </template>
 
@@ -25,6 +27,7 @@
 </style>
 
 <script setup>
+import {IonContent} from "@ionic/vue";
 import ExploreContainer from '@/components/ExploreContainer.vue';
 import RecipeItem from "./RecipeItem.vue";
 </script>

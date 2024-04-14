@@ -35,19 +35,24 @@ const routes = [
         name: 'Tab4',
         component: () => import('@/views/Tab4Page.vue')
       },
-      {
-        path: 'login',
-        name: 'Login',
-        component: () => import('@/views/Auth/Login.vue')
-      },
-      {
-        path: 'register',
-        name: 'Register',
-        component: () => import('@/views/Auth/Register.vue')
-      },
     ]
   },
+  {
+    path: '/auth',
+    name: 'Auth',
+    component: () => import('@/views/AuthPage.vue')
+  },
 
+  // {
+  //   path: '/login',
+  //   name: 'Login',
+  //   component: () => import('@/views/Auth/Login.vue')
+  // },
+  // {
+  //   path: '/register',
+  //   name: 'Register',
+  //   component: () => import('@/views/Auth/Register.vue')
+  // },
 ]
 
 const router = createRouter({

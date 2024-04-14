@@ -1,6 +1,23 @@
 <template>
   <ion-page>
-    <ion-card class="card">
+    <ion-content>
+
+      <ion-text color="dark"><h1 class="header1"><b>CookingNote</b></h1></ion-text>
+      <br/>
+
+      <ion-segment value="register">
+        <ion-segment-button value="register">
+          <ion-label>Регистрация</ion-label>
+        </ion-segment-button>
+
+        <ion-segment-button value="login" @click.stop="handleLoginButton">
+          <ion-label>Вход</ion-label>
+        </ion-segment-button>
+      </ion-segment>
+      <br/><br/><br/>
+
+
+
 
       <h1>Регистрация</h1>
       <ion-input
@@ -21,12 +38,12 @@
         Зарегистрироваться
       </ion-button>
 
-    </ion-card>
+    </ion-content>
   </ion-page>
 </template>
 
 <script setup>
-import {IonButton, IonCard, IonInput, IonPage} from "@ionic/vue";
+import {IonButton, IonContent, IonInput, IonPage} from "@ionic/vue";
 import {ref} from "vue";
 import {useRouter} from "vue-router";
 import axios from "axios";
@@ -48,6 +65,11 @@ const handleSubmitButton = (event) => {
       })
 };
 
+const handleLoginButton = () => {
+  router.push({
+    name: 'Login'
+  });
+};
 
 </script>
 
