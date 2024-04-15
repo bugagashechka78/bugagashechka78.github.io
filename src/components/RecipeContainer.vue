@@ -18,6 +18,14 @@
         @like="likeRecipe"
         @info="$emit('info', recipe)"
     />
+    <recipe-item
+        v-else-if="(tab===4)"
+        v-for="recipe in recipes"
+        :recipe="recipe"
+        :key="recipe.id"
+        @like="likeRecipe"
+        @info="$emit('info', recipe)"
+    />
 
   </div>
 </template>
