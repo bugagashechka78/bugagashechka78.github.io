@@ -88,12 +88,13 @@ const setOpen = (state, flag) => {
   }
 };
 
-const handleLoginButton = (event) => {
+const handleLoginButton =  (event) => {
   event.preventDefault();
   axios.post(`http://77.238.225.192:3001/api/auth/login/`, login.value)
-      .then(response => {
+      .then(async response => {
         localStorage.setItem('jwtToken', response.data.token);
-        router.push({
+        // await new Promise(resolve => setTimeout(resolve, 1000));
+        await router.push({
           name: 'Tab2',
         });
 

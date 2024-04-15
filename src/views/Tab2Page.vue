@@ -12,9 +12,9 @@
     <br/>
 
       <ion-tab-bar slot="top">
-        <ion-tab-button v-for="n in 10" tab="account">
-          <img class="categories_img" alt="Десерт" src="/public/favicon.png"/>
-          <ion-label>Десерты</ion-label>
+        <ion-tab-button v-for="category in categories" tab="account">
+          <img class="categories_img" alt={{category}} src="/public/favicon.png"/>
+          <ion-label>{{category}}</ion-label>
         </ion-tab-button>
       </ion-tab-bar>
 
@@ -50,191 +50,31 @@ import InfoRecipe from '@/components/InfoRecipe.vue';
 </script>
 
 <script>
+import axios from "axios";
+
 export default {
   data() {
     return {
       infoRecipe: Object,
-      recipes: [
-        {
-          id: 1,
-          name: 'Плов',
-          calorie: '150.7 кКал',
-          squirrels: '45 г',
-          fats: '88 г',
-          carbohydrates: '100 г',
-          ingredients:
-              [
-                {
-                  id: 1,
-                  ingredient: 'Укроп',
-                  quantity: "100 г"
-                },
-                {
-                  id: 2,
-                  ingredient: 'Баранина',
-                  quantity: "900 г"
-                },
-                {
-                  id: 3,
-                  ingredient: 'Рис',
-                  quantity: "1400 г"
-                }
-                ,
-                {
-                  id: 4,
-                  ingredient: 'Карри',
-                  quantity: "5 г"
-                }
-              ],
-          recipe_text: 'Берем пучок укропа, потом баранья',
-          like: false,
-          ate: false,
-        },
-        {
-          id: 2,
-          name: 'Плов',
-          calorie: '150.7 кКал',
-          squirrels: '45 г',
-          fats: '88 г',
-          carbohydrates: '100 г',
-          ingredients:
-              [
-                {
-                  id: 1,
-                  ingredient: 'Укроп',
-                  quantity: "100 г"
-                },
-                {
-                  id: 2,
-                  ingredient: 'Баранина',
-                  quantity: "900 г"
-                },
-                {
-                  id: 3,
-                  ingredient: 'Рис',
-                  quantity: "1400 г"
-                }
-                ,
-                {
-                  id: 4,
-                  ingredient: 'Карри',
-                  quantity: "5 г"
-                }
-              ],
-          recipe_text: 'Берем пучок укропа, потом баранья',
-          like: false,
-          ate: false,
-        },
-        {
-          id: 3,
-          name: 'Плов',
-          calorie: '150.7 кКал',
-          squirrels: '45 г',
-          fats: '88 г',
-          carbohydrates: '100 г',
-          ingredients:
-              [
-                {
-                  id: 1,
-                  ingredient: 'Укроп',
-                  quantity: "100 г"
-                },
-                {
-                  id: 2,
-                  ingredient: 'Баранина',
-                  quantity: "900 г"
-                },
-                {
-                  id: 3,
-                  ingredient: 'Рис',
-                  quantity: "1400 г"
-                }
-                ,
-                {
-                  id: 4,
-                  ingredient: 'Карри',
-                  quantity: "5 г"
-                }
-              ],
-          recipe_text: 'Берем пучок укропа, потом баранья',
-          like: false,
-          ate: false,
-        },
-        {
-          id: 4,
-          name: 'Суп',
-          calorie: '60 кКал',
-          squirrels: '45 г',
-          fats: '88 г',
-          carbohydrates: '100 г',
-          ingredients:
-              [
-                {
-                  id: 1,
-                  ingredient: 'Петрушка',
-                  quantity: "200 г"
-                },
-                {
-                  id: 2,
-                  ingredient: 'Курица',
-                  quantity: "1210 г"
-                }
-              ],
-          recipe_text: 'Берем пучок укропа, потом баранья',
-          like: false,
-          ate: false,
-        },
-        {
-          id: 5,
-          name: 'Суп',
-          calorie: '60 кКал',
-          squirrels: '45 г',
-          fats: '88 г',
-          carbohydrates: '100 г',
-          ingredients:
-              [
-                {
-                  id: 1,
-                  ingredient: 'Петрушка',
-                  quantity: "200 г"
-                },
-                {
-                  id: 2,
-                  ingredient: 'Курица',
-                  quantity: "1210 г"
-                }
-              ],
-          recipe_text: 'Берем пучок укропа, потом баранья',
-          like: false,
-          ate: false,
-        },
-        {
-          id: 6,
-          name: 'Суп',
-          calorie: '60 кКал',
-          squirrels: '45 г',
-          fats: '88 г',
-          carbohydrates: '100 г',
-          ingredients:
-              [
-                {
-                  id: 1,
-                  ingredient: 'Петрушка',
-                  quantity: "200 г"
-                },
-                {
-                  id: 2,
-                  ingredient: 'Курица',
-                  quantity: "1210 г"
-                }
-              ],
-          recipe_text: 'Берем пучок укропа, потом баранья',
-          like: false,
-          ate: true,
-        }
-      ],
-      isOpen: false
+      recipes: [],
+      isOpen: false,
+      categories:[
+          "Завтраки",
+          "Салаты",
+          "Вторые блюда",
+          "Супы"
+      ]
     }
+  },
+  async mounted() {
+    //console.log('the component is now mounted.')
+    await new Promise(resolve => setTimeout(resolve, 1000));
+    axios.defaults.headers.common['Authorization'] = localStorage.getItem('jwtToken');
+    axios.get(`http://77.238.225.192:3001/api/recipes`)
+        .then((res)=>this.recipes=res.data)
+        .catch(error => {
+          console.log(error);
+        });
   },
   methods: {
     async infoRecipeOpen(recipe) {

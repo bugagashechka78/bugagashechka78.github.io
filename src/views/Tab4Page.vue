@@ -36,7 +36,7 @@ export default defineComponent({
   props: {
     recipe: {
       type: Object,
-      required: true
+      //required: true
     }
   },
   data() {

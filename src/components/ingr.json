@@ -1,0 +1,37 @@
+[
+  {
+    "name": "Молоко",
+    "calorie": 68,
+    "proteins": 3.2,
+    "fats": 3.6,
+    "carbs": 4.8
+  },
+  {
+    "name": "Банан",
+    "calorie": 89,
+    "proteins": 1.5,
+    "fats": 0.1,
+    "carbs": 21.8
+  },
+  {
+    "name": "Киви",
+    "calorie": 48,
+    "proteins": 1,
+    "fats": 0.6,
+    "carbs": 10.3
+  },
+  {
+    "name": "Яблоко",
+    "calorie": 47,
+    "proteins": 0.4,
+    "fats": 0.4,
+    "carbs": 9.8
+  },
+  {
+    "name": "Мед",
+    "calorie": 400,
+    "proteins": 0.8,
+    "fats": 0,
+    "carbs": 81.5
+  }
+]

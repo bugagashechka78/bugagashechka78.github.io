@@ -7,7 +7,6 @@ let ingredientsSchema = new mongoose.Schema({
     proteins: {type: Number, required: true},
     fats: {type: Number, required: true},
     carbs: {type: Number, required: true},
-    unit: {type: String, required: true},
 });
 
 

@@ -31,5 +31,6 @@ const initializeApp = async () => {
 onMounted(initializeApp);
 
 
+
 </script>
 
