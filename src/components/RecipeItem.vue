@@ -9,10 +9,10 @@
         </ion-button>
 
       </ion-card-title>
-      <ion-card-subtitle>{{ recipe.calorie }}</ion-card-subtitle>
+      <ion-card-subtitle>{{ recipe.calorie }} ккал</ion-card-subtitle>
     </ion-card-header>
     <ion-card-content v-for="ingredient in recipe.ingredients">
-      {{ ingredient.ingredient }} {{ ingredient.quantity }}
+      {{ ingredient.ingredient }} {{ ingredient.quantity }} {{ ingredient.unit }}
     </ion-card-content>
   </ion-card>
 </template>

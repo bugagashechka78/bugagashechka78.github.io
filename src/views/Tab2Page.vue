@@ -13,8 +13,8 @@
 
       <ion-tab-bar slot="top">
         <ion-tab-button v-for="category in categories" tab="account">
-          <img class="categories_img" alt={{category}} src="/public/favicon.png"/>
-          <ion-label>{{category}}</ion-label>
+          <img class="categories_img" alt={{category.name}} :src="`/public/categories/${category.picture}`"/>
+          <ion-label>{{category.name}}</ion-label>
         </ion-tab-button>
       </ion-tab-bar>
 
@@ -59,10 +59,10 @@ export default {
       recipes: [],
       isOpen: false,
       categories:[
-          "Завтраки",
-          "Салаты",
-          "Вторые блюда",
-          "Супы"
+        {name: "Завтраки", picture: "breakfast.jpg"},
+        {name: "Салаты", picture: "salad.jpg"},
+        {name: "Вторые блюда", picture: "secondCourse.jpg"},
+        {name: "Супы", picture: "soup.jpg"}
       ]
     }
   },

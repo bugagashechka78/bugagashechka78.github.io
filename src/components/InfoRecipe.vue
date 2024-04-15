@@ -23,7 +23,7 @@
       </ul>
       <ul class="item">
         <li>Белки</li>
-        <li>{{ recipe.squirrels }}</li>
+        <li>{{ recipe.proteins}}</li>
       </ul>
       <ul class="item">
         <li>Жиры</li>
@@ -31,7 +31,7 @@
       </ul>
       <ul class="item">
         <li>Углеводы</li>
-        <li>{{ recipe.carbohydrates }}</li>
+        <li>{{ recipe.carbs }}</li>
       </ul>
     </ion-card-subtitle>
     <ion-card-content> Время приготовления ~ 30 мин</ion-card-content>
@@ -41,11 +41,11 @@
         <ion-card-title>Список ингредиентов</ion-card-title>
       </ion-card-header>
       <ion-card-content v-for="ingredient in recipe.ingredients">
-        {{ ingredient.ingredient }} {{ ingredient.quantity }}
+        {{ ingredient.ingredient }} {{ ingredient.quantity }} {{ ingredient.unit }}
       </ion-card-content>
     </ion-card>
     <ion-title class="name">Способ приготовления</ion-title>
-    <ion-card-content> Ничего сложного в приготовлении этого вкусного
+    <ion-card-content> {{recipe.recipeText}}Ничего сложного в приготовлении этого вкусного
        и сытного блюда нет, самое главное — соблюдать основные правила приготовления. Результат
         приятно удивит и вас и ваших родных, плов получится вкусным. 
       </ion-card-content>
@@ -56,7 +56,7 @@
 </template>
 
 <script setup>
-import { IonHeader, IonToolbar,IonCard, IonCardContent, IonTitle, IonContent, IonButtons, IonButton, IonIcon } from '@ionic/vue';
+import { IonHeader, IonToolbar,IonCard, IonCardContent, IonTitle, IonContent, IonButtons, IonButton, IonIcon, IonCardSubtitle, IonCardTitle, IonCardHeader } from '@ionic/vue';
 import {chevronBackOutline, heart} from 'ionicons/icons';
 </script>
 
