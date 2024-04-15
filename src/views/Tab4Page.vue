@@ -6,10 +6,9 @@
       </ion-toolbar>
     </ion-header>
     <ion-content class = "content" :fullscreen="true">
-      
-  
+      <br/>
       <ion-progress-bar class = "progress_bar":value="progress"></ion-progress-bar>
-      
+      <br/>
       <ion-label>Сегодня вы потребили {{ progress * 100 }}% от суточной нормы</ion-label>
       <recipe-container :recipes="recipes" :tab="4"/>
     </ion-content>
@@ -31,6 +30,12 @@ import { IonLabel } from '@ionic/vue';
 
 
 export default defineComponent({
+  props: {
+    recipe: {
+      type: Object,
+      required: true
+    }
+  },
   data() {
     return {
       infoRecipe: Object,
@@ -38,7 +43,7 @@ export default defineComponent({
         {
           id: 1,
           name: 'Плов',
-          calorie: '150.7 кКал',
+          calorie: '150.7',
           squirrels: '45 г',
           fats: '88 г',
           carbohydrates: '100 г',
@@ -69,16 +74,36 @@ export default defineComponent({
           recipe_text: 'Берем пучок укропа, потом баранья',
           like: false,
           ate: false,
+          
+        },
+        {
+          id: 4,
+          name: 'Суп',
+          calorie: '60',
+          squirrels: '45 г',
+          fats: '88 г',
+          carbohydrates: '100 г',
+          ingredients:
+              [
+                {
+                  id: 1,
+                  ingredient: 'Петрушка',
+                  quantity: "200 г"
+                },
+                {
+                  id: 2,
+                  ingredient: 'Курица',
+                  quantity: "1210 г"
+                }
+              ],
+          recipe_text: 'Берем пучок укропа, потом баранья',
+          like: false,
+          ate: false,
         },
       ]
     }
   },
-  props: {
-    recipe: {
-      type: Object,
-      required: true
-    }
-  },
+  
   /*methods:{
     wantRecipe(recipe){
         this.recipe.find(r => r.id === recipe.id).ate= !this.recipe.find(r => r.id === recipe.id).ate;
@@ -87,6 +112,11 @@ export default defineComponent({
     }*/
     components: { IonProgressBar, IonPage, IonHeader, IonToolbar, IonTitle, IonContent, ExploreContainer, IonLabel, RecipeContainer},
     setup() {
+      /*let sum = 0
+      for(recipe in recipes)
+        recipe="recipe"
+        sum += int(this.recipe.calorie)
+      sum = sum/2200*/
       let progress = ref(0.5);
 
       return {
