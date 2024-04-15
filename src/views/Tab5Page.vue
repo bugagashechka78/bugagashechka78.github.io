@@ -68,7 +68,8 @@
         <ion-label slot="end">{{ bmr }} </ion-label>
         <ion-label slot="end"> ккал</ion-label>
       </ion-item> 
-      <ion-button @click="calculateCalories" expand="block" fill="solid">Рассчитать лимит калорий</ion-button>
+      <ion-button @click="calculateCalories" expand="block" fill="outline">Рассчитать лимит калорий</ion-button>
+      <ion-button @click="saveProfile" expand="block" fill="solid">Сохранить</ion-button>
       
     </ion-content>
   </ion-page>
@@ -112,6 +113,9 @@ export default {
       if (this.my_data.gender=="female") {this.bmr-=161;}
       this.bmr= Math.round(this.bmr);
       return this.bmr;
+    },
+    saveProfile(){
+      
     }
     }
   }
