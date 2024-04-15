@@ -5,11 +5,13 @@
         <ion-title>Меню дня</ion-title>
       </ion-toolbar>
     </ion-header>
-    <ion-content :fullscreen="true">
-      <ExploreContainer
-          name="Здесь планируется создать график пониторинга потребленных к/б/ж/у, а также названия съеденных блюд"/>
+    <ion-content class = "content" :fullscreen="true">
+      
       <br/>
-        <ion-progress-bar :value="progress"></ion-progress-bar>
+        <ion-progress-bar class = "progress_bar":value="progress"></ion-progress-bar>
+      <br/>
+      <br/>
+        <ion-label>Сегодня вы потребили {{ progress * 100 }}% от суточной нормы</ion-label>
       <br/>
     </ion-content>
   </ion-page>
@@ -23,6 +25,7 @@ import RecipeContainer from '@/components/RecipeContainer.vue';
 import RecipeItem from '@/components/RecipeItem.vue';
 import { IonProgressBar } from '@ionic/vue';
 import { defineComponent, ref} from 'vue';
+import { IonLabel } from '@ionic/vue';
 /*<ExploreContainer name="Здесь планируется создать график пониторинга потребленных к/б/ж/у, а также названия съеденных блюд" />*/
 
 
@@ -223,7 +226,7 @@ export default defineComponent({
         console.log(this.recipe.find(r => r.id === recipe.id).ate);
       }
     }*/
-    components: { IonProgressBar, IonPage, IonHeader, IonToolbar, IonTitle, IonContent, ExploreContainer},
+    components: { IonProgressBar, IonPage, IonHeader, IonToolbar, IonTitle, IonContent, ExploreContainer, IonLabel},
     setup() {
       let progress = ref(0.5);
 
@@ -231,23 +234,15 @@ export default defineComponent({
         progress,
       };
     },
-    mounted() {
-      setInterval(() => {
-        this.progress += 0.06;
-
-        // Reset the progress bar when it reaches 100%
-        // to continuously show the demo
-        if (this.progress > 1) {
-          setTimeout(() => {
-            this.progress = 0;
-          }, 1000);
-        }
-      }, 1000);
-    }
 });
 </script>
 
 <style>
-
+.content{
+  justify-content: center;
+}
+.progress_bar{
+  width: 70%;
+}
 </style>
 
