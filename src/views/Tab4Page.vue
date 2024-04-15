@@ -85,7 +85,7 @@ export default defineComponent({
         console.log(this.recipe.find(r => r.id === recipe.id).ate);
       }
     }*/
-    components: { IonProgressBar, IonPage, IonHeader, IonToolbar, IonTitle, IonContent, ExploreContainer, IonLabel},
+    components: { IonProgressBar, IonPage, IonHeader, IonToolbar, IonTitle, IonContent, ExploreContainer, IonLabel, RecipeContainer},
     setup() {
       let progress = ref(0.5);
 
@@ -101,7 +101,6 @@ export default defineComponent({
   justify-content: center;
 }
 .progress_bar{
-  width: 70%;
   text-align: center;
 }
 </style>
