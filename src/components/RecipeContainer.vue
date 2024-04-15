@@ -23,6 +23,8 @@
         v-for="recipe in recipes"
         :recipe="recipe"
         :key="recipe.id"
+        @like="likeRecipe"
+        @info="$emit('info', recipe)"
     />
 
   </div>
