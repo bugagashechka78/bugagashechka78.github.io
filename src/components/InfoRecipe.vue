@@ -12,7 +12,7 @@
   <ion-content>
     <div class="image">
       <img
-          src="https://ionic-docs-demo-v7.vercel.app/assets/madison.jpg"/>
+          src= "https://cdn.pixabay.com/photo/2017/01/24/20/30/soup-2006317_1280.jpg">
     </div>
     <ion-title class="name">{{ recipe.name }}</ion-title>
     <ion-title class="energy">Энергетическая ценность на порцию</ion-title>
