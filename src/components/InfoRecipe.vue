@@ -19,22 +19,22 @@
     <ion-card-subtitle class="energy_items">
       <ul class="item">
         <li>Калорийность</li>
-        <li>{{ recipe.calorie }}</li>
+        <li>{{ recipe.calorie }} ккал</li>
       </ul>
       <ul class="item">
         <li>Белки</li>
-        <li>{{ recipe.proteins}}</li>
+        <li>{{ recipe.proteins}} г</li>
       </ul>
       <ul class="item">
         <li>Жиры</li>
-        <li>{{ recipe.fats }}</li>
+        <li>{{ recipe.fats }} г</li>
       </ul>
       <ul class="item">
         <li>Углеводы</li>
-        <li>{{ recipe.carbs }}</li>
+        <li>{{ recipe.carbs }} г</li>
       </ul>
     </ion-card-subtitle>
-    <ion-card-content> Время приготовления ~ 30 мин</ion-card-content>
+    <ion-card-content> Время приготовления: {{recipe.cookingTime}}</ion-card-content>
 
     <ion-card>
       <ion-card-header>
@@ -45,10 +45,7 @@
       </ion-card-content>
     </ion-card>
     <ion-title class="name">Способ приготовления</ion-title>
-    <ion-card-content> {{recipe.recipeText}}Ничего сложного в приготовлении этого вкусного
-       и сытного блюда нет, самое главное — соблюдать основные правила приготовления. Результат
-        приятно удивит и вас и ваших родных, плов получится вкусным. 
-      </ion-card-content>
+    <ion-card-content> <p v-for="paragraph in recipe.recipeText.split('\n')">{{paragraph}}</p></ion-card-content>
     <ion-button @click="" expand="full">Хочу съесть
     </ion-button>
     <!--    Сюда нужно будет писать информацию о рецепте -->

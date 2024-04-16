@@ -11,9 +11,9 @@
     <ion-label class="categories_label"><b>Категории</b></ion-label>
     <br/>
 
-      <ion-tab-bar slot="top">
+      <ion-tab-bar  slot="top">
         <ion-tab-button v-for="category in categories" tab="account">
-          <img class="categories_img" alt={{category.name}} :src="`/public/categories/${category.picture}`"/>
+          <img class="categories_img" alt={{category.name}} :src="`/categories/${category.picture}`"/>
           <ion-label>{{category.name}}</ion-label>
         </ion-tab-button>
       </ion-tab-bar>
@@ -57,8 +57,10 @@ export default {
     return {
       infoRecipe: Object,
       recipes: [],
+      ingredients: [],
       isOpen: false,
       categories:[
+        {name: "Все", picture: "all2.png"},
         {name: "Завтраки", picture: "breakfast.jpg"},
         {name: "Салаты", picture: "salad.jpg"},
         {name: "Вторые блюда", picture: "secondCourse.jpg"},
@@ -75,6 +77,11 @@ export default {
         .catch(error => {
           console.log(error);
         });
+    // axios.get(`http://77.238.225.192:3001/api/ingredients`)
+    //     .then((res)=>this.ingredients=res.data)
+    //     .catch(error => {
+    //       console.log(error);
+    //     });
   },
   methods: {
     async infoRecipeOpen(recipe) {
@@ -103,6 +110,7 @@ ion-searchbar.custom {
 img.categories_img{
   max-width: 3vh;
   max-height: 3vh;
+  border-radius: 50%;
 }
 .categories_label {
   margin-left: 5vw;

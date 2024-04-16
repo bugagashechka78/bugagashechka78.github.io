@@ -29,6 +29,7 @@ app.use(function(req,res,next){
 
 app.use(express.json());
 app.use('/api/recipes', require('./routes/recipes'));
+app.use('/api/ingredients', require('./routes/ingredients'));
 app.use('/api/auth', require('./routes/auth'));
 app.use('/', express.static(path.join(__dirname, '../dist')));
 app.get('*', express.static(path.join(__dirname, '../dist')));
