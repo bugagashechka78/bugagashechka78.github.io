@@ -11,8 +11,10 @@
   </ion-header>
   <ion-content>
     <div class="image">
+      <!--      <img-->
+      <!--          src= "https://cdn.pixabay.com/photo/2017/01/24/20/30/soup-2006317_1280.jpg">-->
       <img
-          src= "https://cdn.pixabay.com/photo/2017/01/24/20/30/soup-2006317_1280.jpg">
+          :src="`/recipes/${recipe.picture}`"/>
     </div>
     <ion-title class="name">{{ recipe.name }}</ion-title>
     <ion-title class="energy">Энергетическая ценность на порцию</ion-title>
@@ -23,7 +25,7 @@
       </ul>
       <ul class="item">
         <li>Белки</li>
-        <li>{{ recipe.proteins}} г</li>
+        <li>{{ recipe.proteins }} г</li>
       </ul>
       <ul class="item">
         <li>Жиры</li>
@@ -34,7 +36,7 @@
         <li>{{ recipe.carbs }} г</li>
       </ul>
     </ion-card-subtitle>
-    <ion-card-content> Время приготовления: {{recipe.cookingTime}}</ion-card-content>
+    <ion-card-content> Время приготовления: {{ recipe.cookingTime }}</ion-card-content>
 
     <ion-card>
       <ion-card-header>
@@ -45,7 +47,7 @@
       </ion-card-content>
     </ion-card>
     <ion-title class="name">Способ приготовления</ion-title>
-    <ion-card-content> <p v-for="paragraph in recipe.recipeText.split('\n')">{{paragraph}}</p></ion-card-content>
+    <ion-card-content><p v-for="paragraph in recipe.recipeText.split('\n')">{{ paragraph }}</p></ion-card-content>
     <ion-button @click="" expand="full">Хочу съесть
     </ion-button>
     <!--    Сюда нужно будет писать информацию о рецепте -->
@@ -53,7 +55,20 @@
 </template>
 
 <script setup>
-import { IonHeader, IonToolbar,IonCard, IonCardContent, IonTitle, IonContent, IonButtons, IonButton, IonIcon, IonCardSubtitle, IonCardTitle, IonCardHeader } from '@ionic/vue';
+import {
+  IonHeader,
+  IonToolbar,
+  IonCard,
+  IonCardContent,
+  IonTitle,
+  IonContent,
+  IonButtons,
+  IonButton,
+  IonIcon,
+  IonCardSubtitle,
+  IonCardTitle,
+  IonCardHeader
+} from '@ionic/vue';
 import {chevronBackOutline, heart} from 'ionicons/icons';
 </script>
 
@@ -66,7 +81,7 @@ export default {
       required: true
     }
   },
-  want_to_eat(recipe){
+  want_to_eat(recipe) {
     this.recipe.ate = true;
   },
   name: "InfoRecipe",
