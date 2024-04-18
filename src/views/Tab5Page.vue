@@ -78,45 +78,35 @@
 <script setup>
 import { 
   IonPage, IonHeader, IonToolbar, IonTitle, IonButton,
-  IonContent, IonInput, IonItem, IonSelect, IonSelectOption,IonList, IonLabel, IonNote 
+  IonContent, IonInput, IonItem, IonSelect, IonSelectOption,
+  IonList, IonLabel, IonNote
 } from '@ionic/vue';
- 
+import {ref} from "vue";
+
+const bmr = ref (0);
+const my_data = ref({
+  id: '',
+  name: '',
+  age: '',
+  height: '',
+  weight:'',
+  gender:'',
+  activity: 1,
+  limit_calories: ''
+});
+
+const calculateCalories = function (){
+  bmr.value=(10*my_data.value.weight+6.25*my_data.value.height-5*my_data.value.age+5)*my_data.value.activity;
+  if (my_data.value.gender===""){
+    bmr.value+=5;}
+  if (my_data.value.gender==="male") {bmr.value+=5;}
+  if (my_data.value.gender==="female") {bmr.value-=161;}
+  bmr.value= Math.round(bmr.value);
+};
+
+const  saveProfile = function (){
+
+}
+
 </script>
 
-<script>
-export default {
-  components: {   
-  },
-  data() {
-    return {
-      bmr: 0,
-      my_data: 
-        {
-          id: '',
-          name: '',
-          age: '',
-          height: '',
-          weight:'',
-          gender:'',
-          activity: 1,
-          limit_calories: ''
-        },
-    }
-  },
-  
-  methods:{
-    calculateCalories(){
-      this.bmr=(10*this.my_data.weight+6.25*this.my_data.height-5*this.my_data.age+5)*this.my_data.activity;
-      if (this.my_data.gender==""){
-        this.bmr+=5;}
-      if (this.my_data.gender=="male") {this.bmr+=5;}
-      if (this.my_data.gender=="female") {this.bmr-=161;}
-      this.bmr= Math.round(this.bmr);
-      return this.bmr;
-    },
-    saveProfile(){
-      
-    }
-    }
-  }
-</script>

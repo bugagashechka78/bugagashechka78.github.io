@@ -1,7 +1,7 @@
 <template>
   <ion-page>
 
-    <ion-searchbar placeholder="Поиск рецепта" class="custom" :debounce="1000" @ionInput="handleInput($event)"></ion-searchbar>
+    <ion-searchbar placeholder="Поиск рецепта" class="custom" :debounce="200" @ionInput="handleInput($event)"></ion-searchbar>
     <ion-label class="categories_label"><b>Категории</b></ion-label>
 
     <ion-tab-bar class = "bar" slot="top">
@@ -26,17 +26,12 @@
 import {
   IonPage,
   IonSearchbar,
-  IonIcon,
-  IonTabBar, IonTabButton, IonTabs,
-  IonHeader,
+  IonTabBar,
+  IonTabButton,
   IonLabel,
-  IonTitle,
-  IonNote,
-  IonAvatar,
   IonContent,
   IonModal
 } from '@ionic/vue';
-import {call, person, settings} from 'ionicons/icons';
 import ExploreContainer from '@/components/ExploreContainer.vue';
 import RecipeContainer from '@/components/RecipeContainer.vue';
 import InfoRecipe from '@/components/InfoRecipe.vue';
@@ -51,7 +46,8 @@ const recipeStore = useRecipeStore();
 const infoRecipe = ref({})
 const {recipes, ingredients} = storeToRefs(recipeStore)
 
-const filteredRecipes = ref(recipes);
+const filteredRecipes = ref([]);
+filteredRecipes.value = recipes.value;
 const isOpen = ref(false)
 const categories = [
   {name: "Все", picture: "all2.png"},

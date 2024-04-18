@@ -16,10 +16,6 @@
         </ion-button>
       </ion-card-subtitle>
     </ion-card-header>
-    <!--    <ion-card-content v-for="ingredient in recipe.ingredients">-->
-    <!--      {{ ingredient.ingredient }} {{ ingredient.quantity }} {{ ingredient.unit }}-->
-    <!--    </ion-card-content>-->
-
   </ion-card>
 </template>
 
@@ -47,6 +43,17 @@ ion-card-subtitle {
   display: flex;
   align-items: center;
   justify-content: space-between;
+}
+.dish_img {
+  max-width: 30vw;
+  max-height: 30vw;
+  border-radius: 5%;
+  margin-top: 15px;
+}
+
+ion-card.item_card {
+  max-width: 40vw;
+  padding-bottom: 0;
 }
 
 </style>
@@ -89,18 +96,3 @@ const confirmClick = function (click, emit_type) {
 }
 </script>
 
-
-<style>
-
-.dish_img {
-  max-width: 30vw;
-  max-height: 30vw;
-  border-radius: 5%;
-  margin-top: 15px;
-}
-
-ion-card.item_card {
-  max-width: 40vw;
-  padding-bottom: 0;
-}
-</style>

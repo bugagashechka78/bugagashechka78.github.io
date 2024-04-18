@@ -1,15 +1,9 @@
 <template>
   <ion-page>
-    <!--    <ion-header>-->
-    <!--      <ion-toolbar>-->
-    <!--        <ion-title>Избранные рецепты</ion-title>-->
-    <!--      </ion-toolbar>-->
-    <!--    </ion-header>-->
     <ion-content>
-      <!--  <ExploreContainer name="Тут будет список любимых рецептов" />-->
-
-      <ion-searchbar placeholder="Поиск избранного рецепта" class="custom" :debounce="1000" @ionInput="handleInput($event)"></ion-searchbar>
-      <recipe-container :recipes="likedRecipes" @info="infoRecipeOpen"/>
+        <ion-searchbar ref="searchRecipe" placeholder="Поиск избранного рецепта" class="custom" :debounce="200" @ionInput="handleInput($event)" ></ion-searchbar>
+<!--      Проблема: если список лайкнутых рецептов изменился, невозможно очистить serchbar      -->
+      <recipe-container :recipes="filteredLikedRecipes" @info="infoRecipeOpen"/>
     </ion-content>
     <ion-modal :is-open="isOpen">
       <info-recipe @infoClose="infoRecipeClose" :recipe="recipeToModal"/>
@@ -36,13 +30,17 @@ const recipeToModal = ref({})
 const isOpen = ref(false)
 const {recipes, ingredients} = storeToRefs(recipeStore)
 const {likeAll, likedRecipes} = storeToRefs(userStore)
-const filteredRecipes = ref(recipes);
+const filteredLikedRecipes = ref([])
+const searchRecipe = ref ({})
+filteredLikedRecipes.value = likedRecipes.value;
 
 onMounted(() => {
   likedRecipes.value = [];
   likeAll.value.forEach((newId) => likedRecipes.value.push(recipes.value.filter(item => item._id === newId)[0]));
   console.log(likedRecipes.value);
+  filteredLikedRecipes.value = likedRecipes.value;
 })
+
 
 const infoRecipeOpen = async (recipe) => {
   if (isOpen.value === true) {
@@ -62,8 +60,14 @@ const infoRecipeClose = function () {
 
 const handleInput = function(event) {
   const query = event.target.value.toLowerCase();
-  likedRecipes.value = likedRecipes.value.filter((d) => d.name.toLowerCase().indexOf(query) > -1);
+  filteredLikedRecipes.value = likedRecipes.value.filter((d) => d.name.toLowerCase().indexOf(query) > -1);
 }
+
+watch(likedRecipes,(newVal, oldVal) => {
+  filteredLikedRecipes.value = newVal;
+  searchRecipe.value = '';
+  console.log(searchRecipe.value);
+})
 
 </script>
 

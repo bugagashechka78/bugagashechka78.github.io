@@ -11,10 +11,7 @@
   </ion-header>
   <ion-content>
     <div class="image">
-      <!--      <img-->
-      <!--          src= "https://cdn.pixabay.com/photo/2017/01/24/20/30/soup-2006317_1280.jpg">-->
-      <img
-          :src="`/recipes/${recipe.picture}`"/>
+      <img alt={{recipe.name}} :src="`/recipes/${recipe.picture}`"/>
     </div>
     <ion-title class="name">{{ recipe.name }}</ion-title>
     <ion-title class="energy">Энергетическая ценность на порцию</ion-title>

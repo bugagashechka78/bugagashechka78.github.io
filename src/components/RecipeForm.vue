@@ -98,53 +98,49 @@ import {
   IonIcon
 } from '@ionic/vue';
 import {chevronBackOutline, checkmark} from 'ionicons/icons';
-</script>
+import {ref} from "vue";
 
-<script>
-export default {
-  data() {
-    return {
-      my_recipe: {
-        id: '',
-        name: '',
-        calorie: '',
-        ingredients: [],
-        recipe_text: '',
-        like: false,
-      },
-      new_ingredient: {
-        id: '',
-        ingredient: '',
-        quantity: ''
-      }
-    }
-  },
-  emits: ['create', 'cancel'],
-  methods: {
-    addIngredient() {
-      this.new_ingredient.id = Date.now();
-      this.my_recipe.ingredients.push(this.new_ingredient);
-      this.new_ingredient = {
-        id: '',
-        ingredient: '',
-        quantity: ''
-      }
-    },
-    createRecipe() {
-      this.my_recipe.id = Date.now();
-      this.$emit('create', this.my_recipe);
-      this.my_recipe = {
-        id: '',
-        name: '',
-        calorie: '',
-        ingredients: [],
-        recipe_text: '',
-        like: false,
-      }
-    }
+const my_recipe = ref ({
+  id: '',
+  name: '',
+  calorie: '',
+  ingredients: [],
+  recipe_text: '',
+  like: false,
+});
+const new_ingredient = ref({
+  id: '',
+  ingredient: '',
+  quantity: ''
+});
+
+const emits = defineEmits(['create', 'cancel']);
+
+const addIngredient = function () {
+  new_ingredient.value.id = Date.now();
+  my_recipe.value.ingredients.push(new_ingredient.value);
+  new_ingredient.value = {
+    id: '',
+    ingredient: '',
+    quantity: ''
+  }
+};
+
+const createRecipe = function () {
+  my_recipe.value.id = Date.now();
+  emits('create', my_recipe.value);
+  my_recipe.value = {
+    id: '',
+    name: '',
+    calorie: '',
+    ingredients: [],
+    recipe_text: '',
+    like: false,
   }
 }
+
 </script>
+
 
 <style scoped>
 

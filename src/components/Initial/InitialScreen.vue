@@ -12,11 +12,6 @@
 import {IonImg} from "@ionic/vue";
 </script>
 
-<script>
-export default {
-  name: "InitialScreen",
-}
-</script>
 
 <style scoped>
 div {
