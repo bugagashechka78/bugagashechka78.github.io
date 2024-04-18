@@ -4,13 +4,9 @@
     <ion-searchbar placeholder="Поиск рецепта" class="custom" :debounce="1000" @ionInput="handleInput($event)"></ion-searchbar>
     <ion-label class="categories_label"><b>Категории</b></ion-label>
 
-<<<<<<< HEAD
-    <ion-tab-bar slot="top">
-      <ion-tab-button  v-for="category in categories" tab="account">
-=======
     <ion-tab-bar class = "bar" slot="top">
       <ion-tab-button v-for="category in categories" tab="account">
->>>>>>> 96ba87ccbdee5666dbbd8e90c3433508ca3e7b2e
+
         <img class="categories_img" alt={{category.name}} :src="`/categories/${category.picture}`"/>
         <ion-label>{{ category.name }}</ion-label>
       </ion-tab-button>
