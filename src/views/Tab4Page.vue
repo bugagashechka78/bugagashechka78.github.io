@@ -2,18 +2,37 @@
   <ion-page>
     <ion-header>
       <ion-toolbar>
-        <ion-title>Меню дня</ion-title>
+        <ion-title>Меню дня (В разработке)</ion-title>
       </ion-toolbar>
     </ion-header>
     <ion-content class = "content" :fullscreen="true">
       <br/>
-      <ion-progress-bar class = "progress_bar":value="progress"></ion-progress-bar>
+      <ion-progress-bar class = "progress_bar" :value="progress"></ion-progress-bar>
       <br/>
-      <ion-label>Сегодня вы потребили {{ progress * 100 }}% от суточной нормы</ion-label>
-      <recipe-container :recipes="recipes" @info="infoRecipeOpen" :tab="4"/>
+      <ion-label><b>Сегодня вы потребили {{ progress * 100 }}% от суточной нормы</b></ion-label><br/><br/>
+      <ion-label>Ваша суточная норма: <b>2064 ккал</b></ion-label><br/><br/>
+      <ion-label>На данный момент потреблено: <b>555 ккал</b></ion-label><br/><br/>
+      <ion-label>Меню дня:</ion-label><br/><br/>
+      <ion-card>
+        <ion-card-title>
+          Смузи яблоко-киви-банан
+        </ion-card-title>
+        <ion-card-header>
+          300 г (243 ккал)
+        </ion-card-header>
+      </ion-card>
+      <ion-card>
+        <ion-card-title>
+          Булгур с овощами в глубокой сковороде
+        </ion-card-title>
+        <ion-card-header>
+          400 г (312 ккал)
+        </ion-card-header>
+      </ion-card>
+<!--      <recipe-container :recipes="recipes" @info="infoRecipeOpen" :tab="4"/>-->
     </ion-content>
     <ion-modal :is-open="isOpen">
-      <info-recipe :recipe="infoRecipe" @infoClose="infoRecipeClose"/>
+      <info-recipe :recipe="infoRecipe"  @infoClose="infoRecipeClose"/>
     </ion-modal>
   </ion-page>
 </template>
@@ -21,7 +40,7 @@
 
 <script>
 
-import {IonPage, IonHeader, IonToolbar, IonTitle, IonContent, IonCard, IonCardContent, IonCardTitle, IonCardHeader,  IonModal} from '@ionic/vue';
+import {IonPage, IonHeader, IonToolbar, IonTitle, IonContent, IonCardHeader,  IonCard, IonCardTitle, IonModal} from '@ionic/vue';
 import ExploreContainer from '@/components/ExploreContainer.vue';
 import RecipeContainer from '@/components/RecipeContainer.vue';
 import RecipeItem from '@/components/RecipeItem.vue';
@@ -33,77 +52,71 @@ import InfoRecipe from '@/components/InfoRecipe.vue';
 
 
 export default defineComponent({
-  props: {
-    recipe: {
-      type: Object,
-      //required: true
-    }
-  },
   data() {
     return {
       infoRecipe: Object,
-      recipes: [
-        {
-          id: 1,
-          name: 'Плов',
-          calorie: '150.7 кКал',
-          squirrels: '45 г',
-          fats: '88 г',
-          carbohydrates: '100 г',
-          ingredients:
-              [
-                {
-                  id: 1,
-                  ingredient: 'Укроп',
-                  quantity: "100 г"
-                },
-                {
-                  id: 2,
-                  ingredient: 'Баранина',
-                  quantity: "900 г"
-                },
-                {
-                  id: 3,
-                  ingredient: 'Рис',
-                  quantity: "1400 г"
-                }
-                ,
-                {
-                  id: 4,
-                  ingredient: 'Карри',
-                  quantity: "5 г"
-                }
-              ],
-          recipe_text: 'Берем пучок укропа, потом баранья',
-          like: false,
-          ate: false,
-          
-        },
-        {
-          id: 4,
-          name: 'Суп',
-          calorie: '60 кКал',
-          squirrels: '45 г',
-          fats: '88 г',
-          carbohydrates: '100 г',
-          ingredients:
-              [
-                {
-                  id: 1,
-                  ingredient: 'Петрушка',
-                  quantity: "200 г"
-                },
-                {
-                  id: 2,
-                  ingredient: 'Курица',
-                  quantity: "1210 г"
-                }
-              ],
-          recipe_text: 'Берем пучок укропа, потом баранья',
-          like: false,
-          ate: false,
-        },
-      ],
+      // recipes: [
+      //   {
+      //     id: 1,
+      //     name: 'Плов',
+      //     calorie: '150.7 кКал',
+      //     squirrels: '45 г',
+      //     fats: '88 г',
+      //     carbohydrates: '100 г',
+      //     ingredients:
+      //         [
+      //           {
+      //             id: 1,
+      //             ingredient: 'Укроп',
+      //             quantity: "100 г"
+      //           },
+      //           {
+      //             id: 2,
+      //             ingredient: 'Баранина',
+      //             quantity: "900 г"
+      //           },
+      //           {
+      //             id: 3,
+      //             ingredient: 'Рис',
+      //             quantity: "1400 г"
+      //           }
+      //           ,
+      //           {
+      //             id: 4,
+      //             ingredient: 'Карри',
+      //             quantity: "5 г"
+      //           }
+      //         ],
+      //     recipe_text: 'Берем пучок укропа, потом баранья',
+      //     like: false,
+      //     ate: false,
+      //
+      //   },
+      //   {
+      //     id: 4,
+      //     name: 'Суп',
+      //     calorie: '60 кКал',
+      //     squirrels: '45 г',
+      //     fats: '88 г',
+      //     carbohydrates: '100 г',
+      //     ingredients:
+      //         [
+      //           {
+      //             id: 1,
+      //             ingredient: 'Петрушка',
+      //             quantity: "200 г"
+      //           },
+      //           {
+      //             id: 2,
+      //             ingredient: 'Курица',
+      //             quantity: "1210 г"
+      //           }
+      //         ],
+      //     recipe_text: 'Берем пучок укропа, потом баранья',
+      //     like: false,
+      //     ate: false,
+      //   },
+      // ],
       isOpen: false
     }
   },
@@ -129,19 +142,20 @@ export default defineComponent({
         console.log(this.recipe.find(r => r.id === recipe.id).ate);
       }
     }*/
-    components: { IonProgressBar, IonPage, IonHeader, IonToolbar, IonTitle, IonContent, ExploreContainer, IonLabel, RecipeContainer, InfoRecipe,  IonModal},
+    components: { IonCard, IonCardHeader, IonCardTitle, IonProgressBar, IonPage, IonHeader, IonToolbar, IonTitle, IonContent, ExploreContainer, IonLabel, RecipeContainer, InfoRecipe,  IonModal},
     setup() {
       /*let sum = 0
       for(recipe in recipes)
         recipe="recipe"
         sum += int(this.recipe.calorie)
       sum = sum/2200*/
-      let progress = ref(0.5);
+
+      let progress = ref(0.2688);
 
       return {
         progress,
       };
-    },    
+    },
 });
 </script>
 

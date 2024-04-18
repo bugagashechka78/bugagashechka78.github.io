@@ -1,13 +1,308 @@
 [
   {
-    "name": "Соль",
+    "name": "Молоко",
+    "calorie": 54,
+    "proteins": 2.9,
+    "fats": 2.5,
+    "carbs": 4.8
+  },
+  {
+    "name": "Банан",
+    "calorie": 96,
+    "proteins": 1.5,
+    "fats": 0.5,
+    "carbs": 21
+  },
+  {
+    "name": "Киви",
+    "calorie": 47,
+    "proteins": 0.8,
+    "fats": 0.4,
+    "carbs": 8.1
+  },
+  {
+    "name": "Яблоко",
+    "calorie": 47,
+    "proteins": 0.4,
+    "fats": 0.4,
+    "carbs": 9.8
+  },
+  {
+    "name": "Мед",
+    "calorie": 328,
+    "proteins": 0.8,
+    "fats": 0,
+    "carbs": 80.3
+  },
+  {
+    "name": "Брокколи",
+    "calorie": 31,
+    "proteins": 2.6,
+    "fats": 0.3,
+    "carbs": 3.9
+  },
+  {
+    "name": "Яйцо",
+    "calorie": 157,
+    "proteins": 12.7,
+    "fats": 11.5,
+    "carbs": 0.7
+  },
+  {
+    "name": "Растительное масло",
+    "calorie": 900,
+    "proteins": 0,
+    "fats": 99.9,
+    "carbs": 0
+  },
+  {
+    "name": "Овсяные хлопья",
+    "calorie": 352,
+    "proteins": 12.3,
+    "fats": 6.2,
+    "carbs": 61.8
+  },
+  {
+    "name": "Твердый сыр",
+    "calorie": 367,
+    "proteins": 33,
+    "fats": 26,
+    "carbs": 0
+  },
+  {
+    "name": "Помидор",
+    "calorie": 23,
+    "proteins": 1.1,
+    "fats": 0.2,
+    "carbs": 3.8
+  },
+  {
+    "name": "Творог",
+    "calorie": 145,
+    "proteins": 21,
+    "fats": 5,
+    "carbs": 3
+  },
+  {
+    "name": "Йогурт",
+    "calorie": 120,
+    "proteins": 2.2,
+    "fats": 5,
+    "carbs": 16
+  },
+  {
+    "name": "Вишня",
+    "calorie": 52,
+    "proteins": 0.8,
+    "fats": 0.2,
+    "carbs": 10.6
+  },
+  {
+    "name": "Семена чиа",
+    "calorie": 486,
+    "proteins": 17,
+    "fats": 25,
+    "carbs": 50
+  },
+  {
+    "name": "Кефир",
+    "calorie": 59,
+    "proteins": 2.9,
+    "fats": 3.2,
+    "carbs": 4
+  },
+  {
+    "name": "Мука",
+    "calorie": 334,
+    "proteins": 10.8,
+    "fats": 1.3,
+    "carbs": 69.9
+  },
+  {
+    "name": "Кабачок",
+    "calorie": 24,
+    "proteins": 0.6,
+    "fats": 0.3,
+    "carbs": 4.6
+  },
+  {
+    "name": "Лук",
+    "calorie": 40,
+    "proteins": 1.1,
+    "fats": 0.1,
+    "carbs": 9
+  },
+  {
+    "name": "Куриная грудка",
+    "calorie": 113,
+    "proteins": 23.6,
+    "fats": 1.9,
+    "carbs": 0.4
+  },
+  {
+    "name": "Булгур",
+    "calorie": 360,
+    "proteins": 3,
+    "fats": 0.2,
+    "carbs": 14.1
+  },
+  {
+    "name": "Огурец",
+    "calorie": 14,
+    "proteins": 0.8,
+    "fats": 0.1,
+    "carbs": 2.5
+  },
+  {
+    "name": "Болгарский перец",
+    "calorie": 27,
+    "proteins": 1.3,
+    "fats": 0.1,
+    "carbs": 5.3
+  },
+  {
+    "name": "Кукуруза",
+    "calorie": 61,
+    "proteins": 2,
+    "fats": 0.8,
+    "carbs": 12.2
+  },
+  {
+    "name": "Фасоль",
+    "calorie": 70,
+    "proteins": 5,
+    "fats": 0,
+    "carbs": 12
+  },
+  {
+    "name": "Петрушка",
+    "calorie": 36,
+    "proteins": 3,
+    "fats": 0.8,
+    "carbs": 6
+  },
+  {
+    "name": "Свекла",
+    "calorie": 42,
+    "proteins": 1.5,
+    "fats": 0.1,
+    "carbs": 8.8
+  },
+  {
+    "name": "Кедровый орех",
+    "calorie": 673,
+    "proteins": 13.7,
+    "fats": 68.4,
+    "carbs": 9.4
+  },
+  {
+    "name": "Горчица",
+    "calorie": 143,
+    "proteins": 9.9,
+    "fats": 5.3,
+    "carbs": 12.7
+  },
+  {
+    "name": "Брынза",
+    "calorie": 262,
+    "proteins": 22.1,
+    "fats": 19.2,
+    "carbs": 0.4
+  },
+  {
+    "name": "Лапша удон",
+    "calorie": 280,
+    "proteins": 5,
+    "fats": 12,
+    "carbs": 38
+  },
+  {
+    "name": "Соевый соус",
+    "calorie": 83,
+    "proteins": 10.5,
+    "fats": 0.1,
+    "carbs": 4.8
+  },
+  {
+    "name": "Томатная паста",
+    "calorie": 102,
+    "proteins": 4.8,
+    "fats": 0.5,
+    "carbs": 19
+  },
+  {
+    "name": "Колбаса",
+    "calorie": 257 ,
+    "proteins": 12.8,
+    "fats": 22.2,
+    "carbs":1.5
+  },
+  {
+    "name": "Редис",
+    "calorie": 20,
+    "proteins": 1.2,
+    "fats": 0.1,
+    "carbs": 3.4
+  },
+  {
+    "name": "Картофель",
+    "calorie": 77,
+    "proteins": 2,
+    "fats": 0.4,
+    "carbs": 16.3
+  },
+  {
+    "name": "Сметана",
+    "calorie": 206,
+    "proteins": 2.5,
+    "fats": 20,
+    "carbs": 3.4
+  },
+  {
+    "name": "Квас",
+    "calorie": 27,
+    "proteins": 0.2,
+    "fats": 0.2,
+    "carbs": 5.2
+  },
+  {
+    "name": "Лук зеленый",
+    "calorie": 20,
+    "proteins": 1.3,
+    "fats": 0.1,
+    "carbs": 3.2
+  },
+  {
+    "name": "Ванилин",
+    "calorie": 350.6,
+    "proteins": 0,
+    "fats": 0,
+    "carbs": 87.6
+  }
+,
+  {
+    "name": "Укроп",
+    "calorie": 350.6,
+    "proteins": 0,
+    "fats": 0,
+    "carbs": 87.6
+  },
+  {
+    "name": "Морковь",
+    "calorie": 41,
+    "proteins": 0.9,
+    "fats": 0.2,
+    "carbs": 6.8
+  },
+  {
+    "name": "Вода",
     "calorie": 0,
     "proteins": 0,
     "fats": 0,
     "carbs": 0
   },
   {
-    "name": "Ванилин",
+    "name": "Соль",
     "calorie": 0,
     "proteins": 0,
     "fats": 0,

@@ -61,45 +61,66 @@
     >
       Зарегистрироваться
     </ion-button>
-    <ion-toast :is-open="isOpen" message="Пароли не совпадают" :duration="3000" @didDismiss="setOpen(false, 'reg')"></ion-toast>
-    <ion-toast :is-open="isOpen1" message="Неправильный логин или пароль" :duration="3000" @didDismiss="setOpen(false, 'log')"></ion-toast>
+    <ion-toast :is-open="isOpen" message="Пароли не совпадают" :duration="3000"
+               @didDismiss="setOpen(false, 'reg')"></ion-toast>
+    <ion-toast :is-open="isOpen1" message="Неправильный логин или пароль" :duration="3000"
+               @didDismiss="setOpen(false, 'log')"></ion-toast>
   </ion-page>
 </template>
 
 <script setup>
-import {IonButton, IonInput, IonToast, IonSegment, IonSegmentButton, IonLabel, IonPage, IonContent, IonText} from "@ionic/vue";
+import {
+  IonButton,
+  IonInput,
+  IonToast,
+  IonSegment,
+  IonSegmentButton,
+  IonLabel,
+  IonPage,
+  IonContent,
+  IonText
+} from "@ionic/vue";
 import {useRouter} from "vue-router";
 import {ref} from "vue";
 import axios from "axios";
+import {useRecipeStore} from "../stores/recipeStore";
+import {useUserStore} from "../stores/UserStore";
+
+const recipeStore = useRecipeStore();
+const userStore=useUserStore()
 
 const isOpen1 = ref(false);
 const isOpen = ref(false);
 const segment_value = ref('login');
 const password_copy = ref('');
 const router = useRouter();
-const login = ref({});
+const login = ref({username:''});
 
 const setOpen = (state, flag) => {
   if (flag === 'reg') {
     isOpen.value = state;
-  }
-  else {
+  } else {
     isOpen1.value = state;
   }
 };
 
-const handleLoginButton =  (event) => {
+const handleLoginButton = (event) => {
   event.preventDefault();
-  axios.post(`http://77.238.225.192:3001/api/auth/login/`, login.value)
+  axios.post(`http://77.238.225.192:3001/api/auth/login`, login.value)
       .then(async response => {
         localStorage.setItem('jwtToken', response.data.token);
-        // await new Promise(resolve => setTimeout(resolve, 1000));
+        await recipeStore.fetchRecipes();
+        await recipeStore.fetchIngredients();
+        userStore.username=login.value.username;
+        userStore.likeAll=response.data.likeAll;
+        await new Promise(resolve => setTimeout(resolve, 1000));
         await router.push({
           name: 'Tab2',
         });
 
       })
       .catch(error => {
+        console.log(error);
         if (error.response.status === 401) {
           //message.error('Неправильный логин или пароль')
           isOpen1.value = true;
@@ -109,7 +130,7 @@ const handleLoginButton =  (event) => {
 
 const handleRegisterButton = (event) => {
   event.preventDefault();
-  if(password_copy.value === login.value.password) {
+  if (password_copy.value === login.value.password) {
     axios.post(`http://77.238.225.192:3001/api/auth/register`, login.value)
         .then(() => {
           segment_value.value = 'login';
@@ -121,8 +142,7 @@ const handleRegisterButton = (event) => {
         .catch(e => {
           console.log(e)
         })
-  }
-  else{
+  } else {
     //alert('Пароли не совпадают')
     isOpen.value = true;
   }

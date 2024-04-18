@@ -11,7 +11,8 @@ app.set('port', '3001');
 app.use(cors());
 app.use(function(req,res,next){
     // Website you wish to allow to connect
-    res.setHeader('Access-Control-Allow-Origin', 'http://77.238.225.192:3001');
+   // res.setHeader('Access-Control-Allow-Origin', 'http://77.238.225.192:3001');
+
 
     // Request methods you wish to allow
     res.setHeader('Access-Control-Allow-Methods', 'GET, POST, OPTIONS, PUT, PATCH, DELETE');
@@ -39,11 +40,11 @@ app.get('*', express.static(path.join(__dirname, '../dist')));
 //     .catch((err) => console.log(err));
 
 mongoose.connect(`mongodb://localhost:27017/recipe_book_db`, {
-    authSource: "recipe_book_db",
-    user: "recipe",
-    pass: "recipesecretpassword",
+    // authSource: "recipe_book_db",
+    //user: "recipe",
+    //pass: "recipesecretpassword",
     useNewUrlParser: true,
-    useUnifiedTopology: true,
+    // useUnifiedTopology: true,
 })
     .then(() => console.log('Connected to MongoDB!'))
     .catch((err) => console.log(err));

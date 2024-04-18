@@ -23,9 +23,9 @@
     "@ionic/vue": "^7.0.0",
     "@ionic/vue-router": "^7.0.0",
     "@nestjs/passport": "^10.0.3",
-    "axios": "^1.6.8",
     "@vuelidate/core": "^2.0.3",
     "@vuelidate/validators": "^2.0.4",
+    "axios": "^1.6.8",
     "bcrypt": "^5.1.1",
     "components": "^0.1.0",
     "cors": "^2.8.5",
@@ -36,6 +36,7 @@
     "mongoose": "^6.4.2",
     "passport": "^0.7.0",
     "passport-jwt": "^4.0.1",
+    "pinia": "^2.1.7",
     "vue": "^3.3.0",
     "vue-router": "^4.2.0",
     "vuelidate": "^0.7.7"

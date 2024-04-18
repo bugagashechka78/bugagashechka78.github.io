@@ -10,6 +10,6 @@ let ingredientsSchema = new mongoose.Schema({
 });
 
 
-module.exports = mongoose.model('ingredientsAll', ingredientsSchema);
+module.exports = mongoose.model('ingredients', ingredientsSchema);
 
 

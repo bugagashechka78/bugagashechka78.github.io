@@ -8,11 +8,12 @@ let recipesSchema = new mongoose.Schema({
     fats: {type: Number, required: true},
     carbs: {type: Number, required: true},
     recipeText: {type: String, required: true},
-    // picture: {type: Image, required: true},
+    picture: {type: String, required: true},
     category: {type: String, required: true},
+    cookingTime: {type: String, required: true},
 
     ingredients: [{
-        ingredientId: {type: mongoose.Schema.Types.ObjectId, ref: 'ingredientsAll'},
+        ingredientId: {type: String, required: true},
         quantity: {type: Number, required: true},
         unit: {type: String, required: true},
     }]

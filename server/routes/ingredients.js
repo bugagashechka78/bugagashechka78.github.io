@@ -16,6 +16,7 @@ router.get('/', passport.authenticate('jwt', {session: false}),
                 if (error) {
                     return next(error);
                 }
+                // console.log(ingredients)
                 res.json(ingredients);
             });
         } else {

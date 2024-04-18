@@ -1,16 +1,15 @@
 <template>
   <ion-page>
-<!--    <ion-header>-->
-<!--      <ion-toolbar>-->
-<!--        <ion-title>Избранные рецепты</ion-title>-->
-<!--      </ion-toolbar>-->
-<!--    </ion-header>-->
+    <!--    <ion-header>-->
+    <!--      <ion-toolbar>-->
+    <!--        <ion-title>Избранные рецепты</ion-title>-->
+    <!--      </ion-toolbar>-->
+    <!--    </ion-header>-->
     <ion-content>
       <!--  <ExploreContainer name="Тут будет список любимых рецептов" />-->
 
       <ion-searchbar placeholder="Поиск избранного рецепта" class="custom"></ion-searchbar>
-      <recipe-container :recipes="recipes" @info="infoRecipeOpen" :tab="1"/>
-
+      <recipe-container :recipes="likedRecipes" @info="infoRecipeOpen"/>
     </ion-content>
     <ion-modal :is-open="isOpen">
       <info-recipe @infoClose="infoRecipeClose" :recipe="recipeToModal"/>
@@ -24,195 +23,42 @@ import {IonPage, IonHeader, IonSearchbar, IonToolbar, IonTitle, IonContent, IonM
 import ExploreContainer from '@/components/ExploreContainer.vue';
 import RecipeContainer from '@/components/RecipeContainer.vue';
 import InfoRecipe from '@/components/InfoRecipe.vue';
+import {useRecipeStore} from "../stores/recipeStore";
+import {useUserStore} from "../stores/UserStore";
+import {onMounted, ref, watch} from "vue"
+import {storeToRefs} from "pinia"
 
-</script>
 
-<script>
-export default {
-  data() {
-    return {
-      recipeToModal: Object,
-      isOpen: false,
-      recipes: [
-        {
-          id: 1,
-          name: 'Плов',
-          calorie: '150.7 кКал',
-          ingredients:
-              [
-                {
-                  id: 1,
-                  ingredient: 'Укроп',
-                  quantity: "100 г"
-                },
-                {
-                  id: 2,
-                  ingredient: 'Баранина',
-                  quantity: "900 г"
-                },
-                {
-                  id: 3,
-                  ingredient: 'Рис',
-                  quantity: "1400 г"
-                }
-                ,
-                {
-                  id: 4,
-                  ingredient: 'Карри',
-                  quantity: "5 г"
-                }
-              ],
-          recipe_text: 'Берем пучок укропа, потом баранья',
-          like: true,
-          ate: false,
-        },
-        {
-          id: 2,
-          name: 'Плов',
-          calorie: '150.7 кКал',
-          ingredients:
-              [
-                {
-                  id: 1,
-                  ingredient: 'Укроп',
-                  quantity: "100 г"
-                },
-                {
-                  id: 2,
-                  ingredient: 'Баранина',
-                  quantity: "900 г"
-                },
-                {
-                  id: 3,
-                  ingredient: 'Рис',
-                  quantity: "1400 г"
-                }
-                ,
-                {
-                  id: 4,
-                  ingredient: 'Карри',
-                  quantity: "5 г"
-                }
-              ],
-          recipe_text: 'Берем пучок укропа, потом баранья',
-          like: false,
-          ate: false,
-        },
-        {
-          id: 3,
-          name: 'Плов',
-          calorie: '150.7 кКал',
-          ingredients:
-              [
-                {
-                  id: 1,
-                  ingredient: 'Укроп',
-                  quantity: "100 г"
-                },
-                {
-                  id: 2,
-                  ingredient: 'Баранина',
-                  quantity: "900 г"
-                },
-                {
-                  id: 3,
-                  ingredient: 'Рис',
-                  quantity: "1400 г"
-                }
-                ,
-                {
-                  id: 4,
-                  ingredient: 'Карри',
-                  quantity: "5 г"
-                }
-              ],
-          recipe_text: 'Берем пучок укропа, потом баранья',
-          like: false,
-          ate: false,
-        },
-        {
-          id: 4,
-          name: 'Суп',
-          calorie: '60 кКал',
-          ingredients:
-              [
-                {
-                  id: 1,
-                  ingredient: 'Петрушка',
-                  quantity: "200 г"
-                },
-                {
-                  id: 2,
-                  ingredient: 'Курица',
-                  quantity: "1210 г"
-                }
-              ],
-          recipe_text: 'Берем пучок укропа, потом баранья',
-          like: true,
-          ate: false,
-        },
-        {
-          id: 5,
-          name: 'Суп',
-          calorie: '60 кКал',
-          ingredients:
-              [
-                {
-                  id: 1,
-                  ingredient: 'Петрушка',
-                  quantity: "200 г"
-                },
-                {
-                  id: 2,
-                  ingredient: 'Курица',
-                  quantity: "1210 г"
-                }
-              ],
-          recipe_text: 'Берем пучок укропа, потом баранья',
-          like: false,
-          ate: false,
-        },
-        {
-          id: 6,
-          name: 'Суп',
-          calorie: '60 кКал',
-          ingredients:
-              [
-                {
-                  id: 1,
-                  ingredient: 'Петрушка',
-                  quantity: "200 г"
-                },
-                {
-                  id: 2,
-                  ingredient: 'Курица',
-                  quantity: "1210 г"
-                }
-              ],
-          recipe_text: 'Берем пучок укропа, потом баранья',
-          like: false,
-          ate: true,
-        }
-      ],
-    }
-  },
-  methods: {
-    async infoRecipeOpen(recipe) {
-      if (this.isOpen === true) {
-        this.isOpen = false;
-        await new Promise(resolve => setTimeout(resolve, 10));
-      }
-      this.recipeToModal = recipe;
-      this.isOpen = true;
-      // console.log("Открытие информации о рецепте:", this.isOpen);
-      // console.log(this.recipes.find(r => r.id === recipe.id).id);
-    },
-    infoRecipeClose() {
-      this.isOpen = false;
-      // console.log("Закрытие информации о рецепте:", this.isOpen);
-    },
+const recipeStore = useRecipeStore();
+const userStore = useUserStore();
+const recipeToModal = ref({})
+
+const isOpen = ref(false)
+const {recipes, ingredients} = storeToRefs(recipeStore)
+const {likeAll, likedRecipes} = storeToRefs(userStore)
+
+onMounted(() => {
+  likedRecipes.value = [];
+  likeAll.value.forEach((newId) => likedRecipes.value.push(recipes.value.filter(item => item._id === newId)[0]));
+  console.log(likedRecipes.value);
+})
+
+const infoRecipeOpen = async (recipe) => {
+  if (isOpen.value === true) {
+    isOpen.value = false;
+    await new Promise(resolve => setTimeout(resolve, 10));
   }
+  recipeToModal.value = recipe;
+  isOpen.value = true;
+  // console.log("Открытие информации о рецепте:", this.isOpen);
+  // console.log(this.recipes.find(r => r.id === recipe.id).id);
 }
+
+const infoRecipeClose = function () {
+  isOpen.value = false;
+  // console.log("Закрытие информации о рецепте:", this.isOpen);
+}
+
 </script>
 
 <style>

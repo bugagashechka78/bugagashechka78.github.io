@@ -43,29 +43,33 @@
         <ion-card-title>Список ингредиентов</ion-card-title>
       </ion-card-header>
       <ion-card-content v-for="ingredient in recipe.ingredients">
-        {{ ingredient.ingredient }} {{ ingredient.quantity }} {{ ingredient.unit }}
+        {{ ingredients.find(r => r.name === ingredient.ingredientId).name }} ..... {{ ingredient.quantity }}
+        {{ ingredient.unit }} ..............................
+        КБЖУ {{ ingredients.find(r => r.name === ingredient.ingredientId).calorie }}
+        /{{ ingredients.find(r => r.name === ingredient.ingredientId).proteins }}
+        /{{ ingredients.find(r => r.name === ingredient.ingredientId).fats }}
+        /{{ ingredients.find(r => r.name === ingredient.ingredientId).carbs }}
       </ion-card-content>
     </ion-card>
     <ion-title class="name">Способ приготовления</ion-title>
+    <br/>
     <ion-card-content><p v-for="paragraph in recipe.recipeText.split('\n')">{{ paragraph }}</p></ion-card-content>
-
     <ion-item>
-        <ion-input
-          ref="eat" 
+      <ion-input
+          v-model="eatWeight"
           placeholder="Введите, сколько грамм готового блюда вы съели"
           type="number">
-        </ion-input>
-        <ion-note slot="end">г</ion-note>
-      </ion-item>
-      <ion-button @click="want_to_eat" id="ate" expand="full">Хочу съесть
-      </ion-button>
+      </ion-input>
+      <ion-note slot="end">г</ion-note>
+    </ion-item>
+    <ion-button @click="want_to_eat" id="ate" expand="full">Хочу съесть
+    </ion-button>
 
-      <ion-alert 
-        trigger="ate" 
+    <ion-alert
+        trigger="ate"
         header="Сохранено"
         :buttons="alertButtons">
-      </ion-alert>
-
+    </ion-alert>
     <!--    Сюда нужно будет писать информацию о рецепте -->
   </ion-content>
 </template>
@@ -84,35 +88,38 @@ import {
   IonCardSubtitle,
   IonCardTitle,
   IonCardHeader,
-  IonAlert
+  IonAlert,
+  IonInput,
+  IonItem,
+  IonNote
 } from '@ionic/vue';
 import {chevronBackOutline, heart} from 'ionicons/icons';
-const alertButtons=['Ok'];
-</script>
+import {storeToRefs} from "pinia/dist/pinia";
+import {useRecipeStore} from "../stores/recipeStore";
+import {ref} from "vue"
 
-<script>
+const props = defineProps([
+  'recipe'
+]);
+const emits = defineEmits(['infoClose']);
 
-export default {
-  props: {
-    recipe: {
-      type: Object,
-      required: true
-    }
-  },
-  methods:{
-    want_to_eat() {
-      this.$refs["eat"].value = "";
-      this.recipe.ate = true;
-    
-  },
-  name: "InfoRecipe",
-  emits: ["infoClose"]
-  }
-  
+const recipeStore = useRecipeStore();
+const {ingredients} = storeToRefs(recipeStore);
+const eatWeight = ref('')
+const alertButtons = ['Ok'];
+
+const want_to_eat = function () {
+  eatWeight.value = ''
+  // props.recipe.ate = true;
 }
 </script>
 
 <style scoped>
+
+ion-card-content {
+  padding-top: 0;
+  padding-bottom: 5px;
+}
 
 .name {
   text-align: center;
@@ -136,7 +143,7 @@ export default {
   flex-direction: column;
   /*justify-content: center;*/
   text-align: center;
-  padding-left: 0px;
+  padding-left: 0;
 }
 
 .item1 {

@@ -18,7 +18,7 @@ const UserSchema = new mongoose.Schema({
         fats: {type: Number, required: false},
         carbs: {type: Number, required: false},
         recipeText: {type: String, required: false},
-        // picture: {type: Image, required: false},
+        picture: {type: String, required: false},
         category: {type: String, required: false},
 
         ingredients: [{
@@ -26,12 +26,19 @@ const UserSchema = new mongoose.Schema({
             quantity: {type: Number, required: false},
         }]
     }],
-    likeMy: [{
-        recipeId: {type: mongoose.Schema.Types.ObjectId, ref: 'myRecipes'},
-    }],
-    likeAll: [{
-        recipeId: {type: mongoose.Schema.Types.ObjectId, ref: 'recipes'},
-    }]
+    // likeMy: [{
+    //     recipeId: {type: mongoose.Schema.Types.ObjectId, ref: 'myRecipes'},
+    // }],
+    likeAll: {type: Array, required:false},
+    eatenAll: {type: Array, required:false},
+    name: {type: String, required: false},
+    age: {type: Number, required: false},
+    height: {type: Number, required: false},
+    weight: {type: Number, required: false},
+    gender: {type: String, required: false},
+    activity: {type: String, required: false},
+    calorieLimit: {type: Number, required: false},
+    goal: {type: String, required: false}
 });
 
 UserSchema.pre('save', function (next) {

@@ -1,27 +1,21 @@
 <template>
   <ion-page>
-    <!--    <ion-header>-->
-    <!--      <ion-toolbar>-->
-    <!--        <ion-title>Популярные рецепты</ion-title>-->
-    <!--      </ion-toolbar>-->
-    <!--    </ion-header>-->
 
-
-    <ion-searchbar placeholder="Поиск рецепта" class="custom"></ion-searchbar>
+    <ion-searchbar placeholder="Поиск рецепта" class="custom" :debounce="1000" @ionInput="handleInput($event)"></ion-searchbar>
     <ion-label class="categories_label"><b>Категории</b></ion-label>
     <br/>
 
-      <ion-tab-bar  slot="top">
-        <ion-tab-button v-for="category in categories" tab="account">
-          <img class="categories_img" alt={{category.name}} :src="`/categories/${category.picture}`"/>
-          <ion-label>{{category.name}}</ion-label>
-        </ion-tab-button>
-      </ion-tab-bar>
+    <ion-tab-bar slot="top">
+      <ion-tab-button v-for="category in categories" tab="account">
+        <img class="categories_img" alt={{category.name}} :src="`/categories/${category.picture}`"/>
+        <ion-label>{{ category.name }}</ion-label>
+      </ion-tab-button>
+    </ion-tab-bar>
 
 
     <!--      <ExploreContainer name="Тут будет список популярных рецептов" />-->
     <ion-content>
-      <recipe-container :recipes="recipes" @info="infoRecipeOpen" :tab="2"/>
+      <recipe-container :recipes="filteredRecipes" @info="infoRecipeOpen"/>
     </ion-content>
     <ion-modal :is-open="isOpen">
       <info-recipe :recipe="infoRecipe" @infoClose="infoRecipeClose"/>
@@ -43,63 +37,51 @@ import {
   IonContent,
   IonModal
 } from '@ionic/vue';
-import { call, person, settings } from 'ionicons/icons';
+import {call, person, settings} from 'ionicons/icons';
 import ExploreContainer from '@/components/ExploreContainer.vue';
 import RecipeContainer from '@/components/RecipeContainer.vue';
 import InfoRecipe from '@/components/InfoRecipe.vue';
-</script>
 
-<script>
-import axios from "axios";
+import {useRecipeStore} from "../stores/recipeStore";
+import {storeToRefs} from "pinia";
+import {ref} from "vue";
 
-export default {
-  data() {
-    return {
-      infoRecipe: Object,
-      recipes: [],
-      ingredients: [],
-      isOpen: false,
-      categories:[
-        {name: "Все", picture: "all2.png"},
-        {name: "Завтраки", picture: "breakfast.jpg"},
-        {name: "Салаты", picture: "salad.jpg"},
-        {name: "Вторые блюда", picture: "secondCourse.jpg"},
-        {name: "Супы", picture: "soup.jpg"}
-      ]
-    }
-  },
-  async mounted() {
-    //console.log('the component is now mounted.')
-    await new Promise(resolve => setTimeout(resolve, 1000));
-    axios.defaults.headers.common['Authorization'] = localStorage.getItem('jwtToken');
-    axios.get(`http://77.238.225.192:3001/api/recipes`)
-        .then((res)=>this.recipes=res.data)
-        .catch(error => {
-          console.log(error);
-        });
-    // axios.get(`http://77.238.225.192:3001/api/ingredients`)
-    //     .then((res)=>this.ingredients=res.data)
-    //     .catch(error => {
-    //       console.log(error);
-    //     });
-  },
-  methods: {
-    async infoRecipeOpen(recipe) {
-      if (this.isOpen === true) {
-        this.isOpen = false;
-        await new Promise(resolve => setTimeout(resolve, 10));
-      }
-      this.infoRecipe = recipe;
-      this.isOpen = true;
-      // console.log("Открытие информации о рецепте:", this.isOpen);
-      // console.log(this.recipes.find(r => r.id === recipe.id).id);
-    },
-    infoRecipeClose() {
-      this.isOpen = false;
-      // console.log("Закрытие информации о рецепте:", this.isOpen);
-    },
+
+const recipeStore = useRecipeStore();
+
+const infoRecipe = ref({})
+const {recipes, ingredients} = storeToRefs(recipeStore)
+
+const filteredRecipes = ref(recipes);
+const isOpen = ref(false)
+const categories = [
+  {name: "Все", picture: "all2.png"},
+  {name: "Завтраки", picture: "breakfast.jpg"},
+  {name: "Салаты", picture: "salad.jpg"},
+  {name: "Вторые блюда", picture: "secondCourse.jpg"},
+  {name: "Супы", picture: "soup.jpg"}
+]
+
+const infoRecipeOpen = async (recipe) => {
+  if (isOpen.value === true) {
+    isOpen.value = false;
+    await new Promise(resolve => setTimeout(resolve, 10));
   }
-};
+  infoRecipe.value = recipe;
+  isOpen.value = true;
+  // console.log("Открытие информации о рецепте:", this.isOpen);
+  // console.log(this.recipes.find(r => r.id === recipe.id).id);
+}
+
+const infoRecipeClose = function () {
+  isOpen.value = false;
+  // console.log("Закрытие информации о рецепте:", this.isOpen);
+}
+
+const handleInput = function(event) {
+  const query = event.target.value.toLowerCase();
+  filteredRecipes.value = recipes.value.filter((d) => d.name.toLowerCase().indexOf(query) > -1);
+}
 
 </script>
 
@@ -107,11 +89,13 @@ export default {
 ion-searchbar.custom {
   --border-radius: 500px;
 }
-img.categories_img{
+
+img.categories_img {
   max-width: 3vh;
   max-height: 3vh;
   border-radius: 50%;
 }
+
 .categories_label {
   margin-left: 5vw;
 }

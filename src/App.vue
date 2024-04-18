@@ -9,12 +9,14 @@
 <script setup>
 import {IonApp, IonRouterOutlet} from '@ionic/vue';
 import InitialScreen from '@/components/Initial/InitialScreen.vue';
-import {onMounted, ref} from "vue";
+import {onBeforeUnmount, onMounted, ref} from "vue";
 import {useRouter} from "vue-router";
 import { SplashScreen } from '@capacitor/splash-screen';
+import {useUserStore} from "./stores/UserStore";
 
 const router = useRouter();
 const initApp = ref(true);
+const userStore=useUserStore()
 
 const initializeApp = async () => {
   await SplashScreen.hide();
@@ -29,7 +31,6 @@ const initializeApp = async () => {
   initApp.value = false;
 };
 onMounted(initializeApp);
-
 
 
 </script>
