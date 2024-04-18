@@ -3,10 +3,14 @@
 
     <ion-searchbar placeholder="Поиск рецепта" class="custom" :debounce="1000" @ionInput="handleInput($event)"></ion-searchbar>
     <ion-label class="categories_label"><b>Категории</b></ion-label>
-    <br/>
 
+<<<<<<< HEAD
     <ion-tab-bar slot="top">
       <ion-tab-button  v-for="category in categories" tab="account">
+=======
+    <ion-tab-bar class = "bar" slot="top">
+      <ion-tab-button v-for="category in categories" tab="account">
+>>>>>>> 96ba87ccbdee5666dbbd8e90c3433508ca3e7b2e
         <img class="categories_img" alt={{category.name}} :src="`/categories/${category.picture}`"/>
         <ion-label>{{ category.name }}</ion-label>
       </ion-tab-button>
@@ -58,7 +62,7 @@ const categories = [
   {name: "Все", picture: "all2.png"},
   {name: "Завтраки", picture: "breakfast.jpg"},
   {name: "Салаты", picture: "salad.jpg"},
-  {name: "Вторые блюда", picture: "secondCourse.jpg"},
+  {name: "Второе", picture: "secondCourse.jpg"},
   {name: "Супы", picture: "soup.jpg"}
 ]
 
@@ -86,13 +90,16 @@ const handleInput = function(event) {
 </script>
 
 <style>
+.bar{
+  height: 7rem;
+}
 ion-searchbar.custom {
   --border-radius: 500px;
 }
 
 img.categories_img {
-  max-width: 3vh;
-  max-height: 3vh;
+  max-width: 6vh;
+  max-height: 6vh;
   border-radius: 50%;
 }
 
