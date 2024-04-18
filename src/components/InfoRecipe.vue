@@ -48,8 +48,24 @@
     </ion-card>
     <ion-title class="name">Способ приготовления</ion-title>
     <ion-card-content><p v-for="paragraph in recipe.recipeText.split('\n')">{{ paragraph }}</p></ion-card-content>
-    <ion-button @click="" expand="full">Хочу съесть
-    </ion-button>
+
+    <ion-item>
+        <ion-input
+          ref="eat" 
+          placeholder="Введите, сколько грамм готового блюда вы съели"
+          type="number">
+        </ion-input>
+        <ion-note slot="end">г</ion-note>
+      </ion-item>
+      <ion-button @click="want_to_eat" id="ate" expand="full">Хочу съесть
+      </ion-button>
+
+      <ion-alert 
+        trigger="ate" 
+        header="Сохранено"
+        :buttons="alertButtons">
+      </ion-alert>
+
     <!--    Сюда нужно будет писать информацию о рецепте -->
   </ion-content>
 </template>
@@ -67,9 +83,11 @@ import {
   IonIcon,
   IonCardSubtitle,
   IonCardTitle,
-  IonCardHeader
+  IonCardHeader,
+  IonAlert
 } from '@ionic/vue';
 import {chevronBackOutline, heart} from 'ionicons/icons';
+const alertButtons=['Ok'];
 </script>
 
 <script>
@@ -81,11 +99,16 @@ export default {
       required: true
     }
   },
-  want_to_eat(recipe) {
-    this.recipe.ate = true;
+  methods:{
+    want_to_eat() {
+      this.$refs["eat"].value = "";
+      this.recipe.ate = true;
+    
   },
   name: "InfoRecipe",
   emits: ["infoClose"]
+  }
+  
 }
 </script>
 
