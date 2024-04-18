@@ -8,7 +8,7 @@
     <ion-content>
       <!--  <ExploreContainer name="Тут будет список любимых рецептов" />-->
 
-      <ion-searchbar placeholder="Поиск избранного рецепта" class="custom"></ion-searchbar>
+      <ion-searchbar placeholder="Поиск избранного рецепта" class="custom" :debounce="1000" @ionInput="handleInput($event)"></ion-searchbar>
       <recipe-container :recipes="likedRecipes" @info="infoRecipeOpen"/>
     </ion-content>
     <ion-modal :is-open="isOpen">
@@ -36,6 +36,7 @@ const recipeToModal = ref({})
 const isOpen = ref(false)
 const {recipes, ingredients} = storeToRefs(recipeStore)
 const {likeAll, likedRecipes} = storeToRefs(userStore)
+const filteredRecipes = ref(recipes);
 
 onMounted(() => {
   likedRecipes.value = [];
@@ -57,6 +58,11 @@ const infoRecipeOpen = async (recipe) => {
 const infoRecipeClose = function () {
   isOpen.value = false;
   // console.log("Закрытие информации о рецепте:", this.isOpen);
+}
+
+const handleInput = function(event) {
+  const query = event.target.value.toLowerCase();
+  likedRecipes.value = likedRecipes.value.filter((d) => d.name.toLowerCase().indexOf(query) > -1);
 }
 
 </script>

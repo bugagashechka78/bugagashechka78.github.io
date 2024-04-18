@@ -6,7 +6,7 @@
     <br/>
 
     <ion-tab-bar slot="top">
-      <ion-tab-button v-for="category in categories" tab="account">
+      <ion-tab-button  v-for="category in categories" tab="account">
         <img class="categories_img" alt={{category.name}} :src="`/categories/${category.picture}`"/>
         <ion-label>{{ category.name }}</ion-label>
       </ion-tab-button>
