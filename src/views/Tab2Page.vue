@@ -6,9 +6,8 @@
 
     <ion-tab-bar class = "bar" slot="top">
       <ion-tab-button v-for="category in categories" tab="account">
-
         <img class="categories_img" alt={{category.name}} :src="`/categories/${category.picture}`"/>
-        <ion-label>{{ category.name }}</ion-label>
+        <ion-label class = "category_name">{{ category.name }}</ion-label>
       </ion-tab-button>
     </ion-tab-bar>
 
@@ -101,5 +100,9 @@ img.categories_img {
 
 .categories_label {
   margin-left: 5vw;
+}
+
+.category_name{
+  margin-top: 5px;
 }
 </style>
