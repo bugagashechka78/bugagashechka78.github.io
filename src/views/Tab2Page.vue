@@ -1,20 +1,21 @@
 <template>
   <ion-page>
 
-    <ion-searchbar placeholder="Поиск рецепта" class="custom" :debounce="200" @ionInput="handleInput($event)"></ion-searchbar>
+    <ion-searchbar placeholder="Поиск рецепта" class="custom" :debounce="200"
+                   @ionInput="handleInput($event)"></ion-searchbar>
     <ion-label class="categories_label"><b>Категории</b></ion-label>
 
-    <ion-tab-bar class = "bar" slot="top">
-      <ion-tab-button v-for="category in categories" tab="account">
+    <ion-tab-bar class="bar" slot="top">
+      <ion-tab-button v-for="category in categories" @click="filterByCategory(category.name)" tab="account">
         <img class="categories_img" alt={{category.name}} :src="`/categories/${category.picture}`"/>
-        <ion-label class = "category_name">{{ category.name }}</ion-label>
+        <ion-label class="category_name">{{ category.name }}</ion-label>
       </ion-tab-button>
     </ion-tab-bar>
 
 
     <!--      <ExploreContainer name="Тут будет список популярных рецептов" />-->
     <ion-content>
-      <recipe-container :recipes="filteredRecipes" @info="infoRecipeOpen"/>
+      <recipe-container :recipes="filteredByCategoryRecipes" @info="infoRecipeOpen"/>
     </ion-content>
     <ion-modal :is-open="isOpen">
       <info-recipe :recipe="infoRecipe" @infoClose="infoRecipeClose"/>
@@ -48,6 +49,8 @@ const {recipes, ingredients} = storeToRefs(recipeStore)
 
 const filteredRecipes = ref([]);
 filteredRecipes.value = recipes.value;
+const filteredByCategoryRecipes = ref([]);
+filteredByCategoryRecipes.value = filteredRecipes.value;
 const isOpen = ref(false)
 const categories = [
   {name: "Все", picture: "all2.png"},
@@ -73,17 +76,30 @@ const infoRecipeClose = function () {
   // console.log("Закрытие информации о рецепте:", this.isOpen);
 }
 
-const handleInput = function(event) {
+const handleInput = function (event) {
   const query = event.target.value.toLowerCase();
   filteredRecipes.value = recipes.value.filter((d) => d.name.toLowerCase().indexOf(query) > -1);
+  filteredByCategoryRecipes.value = filteredRecipes.value;
+}
+
+const filterByCategory = function (category) {
+  if (category === "Второе") {
+    category = "Вторые блюда";
+  }
+  if (category === "Все") {
+    filteredByCategoryRecipes.value = filteredRecipes.value;
+  } else {
+    filteredByCategoryRecipes.value = filteredRecipes.value.filter((d) => d.category === category);
+  }
 }
 
 </script>
 
 <style>
-.bar{
+.bar {
   height: 7rem;
 }
+
 ion-searchbar.custom {
   --border-radius: 500px;
 }
@@ -98,7 +114,7 @@ img.categories_img {
   margin-left: 5vw;
 }
 
-.category_name{
+.category_name {
   margin-top: 5px;
 }
 </style>
