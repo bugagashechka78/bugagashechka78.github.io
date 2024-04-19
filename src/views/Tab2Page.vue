@@ -3,8 +3,6 @@
 
     <ion-searchbar v-model="searchRecipe" placeholder="Поиск рецепта" class="custom" :debounce="200"
                    @ionInput="handleInput($event)"></ion-searchbar>
-    <ion-label class="categories_label"><b>Категории</b></ion-label>
-
     <ion-tab-bar class="bar" slot="top">
       <ion-tab-button v-for="category in categories" @click="filterByCategory(category.name)" tab=category>
         <img class="categories_img" alt={{category.name}} :src="`/categories/${category.picture}`"/>
@@ -87,15 +85,7 @@ const infoRecipeClose = function () {
 const handleInput = function (event) {
   const query = event.target.value.toLowerCase();
   filteredRecipes.value = recipes.value.filter((d) => d.name.toLowerCase().indexOf(query) > -1);
-  let category = currentCategory.value;
-  if (category === "Второе") {
-    category = "Вторые блюда";
-  }
-  if (category === "Все") {
-    filteredByCategoryRecipes.value = filteredRecipes.value;
-  } else {
-    filteredByCategoryRecipes.value = filteredRecipes.value.filter((d) => d.category === category);
-  }
+  filterByCategory(currentCategory.value);
 }
 
 const filterByCategory = function (category) {

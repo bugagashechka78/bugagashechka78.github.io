@@ -9,8 +9,8 @@
       <br/>
       <ion-progress-bar class = "progress_bar" :value="progress"></ion-progress-bar>
       <br/>
-      <ion-label><b>Сегодня вы потребили {{ progress * 100 }}% от суточной нормы</b></ion-label><br/><br/>
-      <ion-label>Ваша суточная норма: <b>2064 ккал</b></ion-label><br/><br/>
+      <ion-label><b>Сегодня вы потребили {{  (progress * 100).toFixed(2) }}% от суточной нормы</b></ion-label><br/><br/>
+      <ion-label>Ваша суточная норма: <b>{{ calorieL }} ккал</b></ion-label><br/><br/>
       <ion-label>На данный момент потреблено: <b>555 ккал</b></ion-label><br/><br/>
       <ion-label>Меню дня:</ion-label><br/><br/>
       <ion-card>
@@ -44,12 +44,26 @@ import {IonPage, IonHeader, IonToolbar, IonTitle, IonContent, IonCardHeader,  Io
 import ExploreContainer from '@/components/ExploreContainer.vue';
 import RecipeContainer from '@/components/RecipeContainer.vue';
 import RecipeItem from '@/components/RecipeItem.vue';
-import { defineComponent, ref} from 'vue';
+import {defineComponent, ref, watch} from 'vue';
 import InfoRecipe from '@/components/InfoRecipe.vue';
+
+import {useUserStore} from "../stores/UserStore";
+import {storeToRefs} from "pinia";
+
+const userStore = useUserStore();
+const { calorieLimit } = storeToRefs(userStore);
 
 const isOpen = ref(false);
 const infoRecipe = ref({});
 const progress = ref(0.2688);
+progress.value = 555/calorieLimit.value;
+const calorieL =ref(2064);
+calorieL.value =  calorieLimit.value;
+
+watch(calorieLimit,(newVal, oldVal) => {
+  calorieL.value = newVal;
+  progress.value = 555/newVal;
+})
 
 const infoRecipeOpen = async (recipe) => {
   if (isOpen.value === true) {

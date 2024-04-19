@@ -113,6 +113,13 @@ const handleLoginButton = (event) => {
         await recipeStore.fetchIngredients();
         userStore.username=login.value.username;
         userStore.likeAll=response.data.likeAll;
+        userStore.name=response.data.name;
+        userStore.age=response.data.age;
+        userStore.height=response.data.height;
+        userStore.weight=response.data.weight;
+        userStore.gender=response.data.gender;
+        userStore.activity=response.data.activity;
+        userStore.calorieLimit=response.data.calorieLimit;
         await new Promise(resolve => setTimeout(resolve, 1000));
         await router.push({
           name: 'Tab2',

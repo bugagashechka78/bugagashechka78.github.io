@@ -52,7 +52,14 @@ router.post('/login', function (req, res) {
                     res.json({
                         success: true,
                         token: 'JWT ' + token,
-                        likeAll: user.likeAll
+                        likeAll: user.likeAll,
+                        name: user.name,
+                        age: user.age,
+                        height: user.height,
+                        weight: user.weight,
+                        gender: user.gender,
+                        activity: user.activity,
+                        calorieLimit: user.calorieLimit
                     });
                 } else {
                     res.status(401).send({success: false, msg: 'Authentication failed. Wrong password.'});
