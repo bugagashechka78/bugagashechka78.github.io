@@ -15,7 +15,17 @@ export const useUserStore = defineStore('User', {
         gender: '',
         activity: 0,
         calorieLimit: 0,
+        eatenAll: [],
+        eatenCalorie: 0
     }),
+    getters:{
+        getEatenCalorieSumm (state) {
+            let summ = 0;
+            state.eatenAll.forEach(r =>  summ = summ+((r.calorie * r.weight) / 100.0));
+            state.eatenCalorie = summ;
+            return state.eatenCalorie;
+        }
+    },
     actions: {
         async syncUserData(payload) {
             try {

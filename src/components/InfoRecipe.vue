@@ -93,7 +93,13 @@ import {
 import {chevronBackOutline, heart} from 'ionicons/icons';
 import {storeToRefs} from "pinia/dist/pinia";
 import {useRecipeStore} from "../stores/recipeStore";
-import {ref} from "vue"
+import {useUserStore} from "../stores/UserStore";
+import {ref, watch} from "vue"
+
+
+
+const userStore = useUserStore();
+const { eatenAll } = storeToRefs(userStore);
 
 const props = defineProps([
   'recipe'
@@ -105,7 +111,11 @@ const {ingredients} = storeToRefs(recipeStore);
 const eatWeight = ref('')
 const alertButtons = ['Ok'];
 
+
 const want_to_eat = function () {
+  let eatenRecipe = {name: props.recipe.name, weight: eatWeight.value, calorie: props.recipe.calorie}
+  //console.log(eatenRecipe);
+  eatenAll.value.push(eatenRecipe);
   eatWeight.value = ''
   // props.recipe.ate = true;
 }
