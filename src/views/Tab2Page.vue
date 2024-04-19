@@ -1,14 +1,19 @@
 <template>
   <ion-page>
 
-    <ion-searchbar placeholder="Поиск рецепта" class="custom" :debounce="200"
+    <ion-searchbar v-model="searchRecipe" placeholder="Поиск рецепта" class="custom" :debounce="200"
                    @ionInput="handleInput($event)"></ion-searchbar>
     <ion-label class="categories_label"><b>Категории</b></ion-label>
 
     <ion-tab-bar class="bar" slot="top">
-      <ion-tab-button v-for="category in categories" @click="filterByCategory(category.name)" tab="account">
+      <ion-tab-button v-for="category in categories" @click="filterByCategory(category.name)" tab=category>
         <img class="categories_img" alt={{category.name}} :src="`/categories/${category.picture}`"/>
-        <ion-label class="category_name">{{ category.name }}</ion-label>
+        <ion-text v-if="currentCategory === category.name" color="primary">
+          <ion-label class="category_name">{{ category.name }}</ion-label>
+        </ion-text>
+        <ion-text v-else>
+          <ion-label class="category_name">{{ category.name }}</ion-label>
+        </ion-text>
       </ion-tab-button>
     </ion-tab-bar>
 
@@ -31,7 +36,8 @@ import {
   IonTabButton,
   IonLabel,
   IonContent,
-  IonModal
+  IonModal,
+  IonText
 } from '@ionic/vue';
 import ExploreContainer from '@/components/ExploreContainer.vue';
 import RecipeContainer from '@/components/RecipeContainer.vue';
@@ -45,6 +51,8 @@ import {ref} from "vue";
 const recipeStore = useRecipeStore();
 
 const infoRecipe = ref({})
+const searchRecipe = ref('')
+const currentCategory = ref('Все')
 const {recipes, ingredients} = storeToRefs(recipeStore)
 
 const filteredRecipes = ref([]);
@@ -83,6 +91,7 @@ const handleInput = function (event) {
 }
 
 const filterByCategory = function (category) {
+  currentCategory.value = category;
   if (category === "Второе") {
     category = "Вторые блюда";
   }

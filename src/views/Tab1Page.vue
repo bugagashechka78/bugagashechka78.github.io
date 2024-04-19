@@ -1,7 +1,7 @@
 <template>
   <ion-page>
     <ion-content>
-        <ion-searchbar ref="searchRecipe" placeholder="Поиск избранного рецепта" class="custom" :debounce="200" @ionInput="handleInput($event)" ></ion-searchbar>
+        <ion-searchbar v-model="searchRecipe" placeholder="Поиск избранного рецепта" class="custom" :debounce="200" @ionInput="handleInput($event)" ></ion-searchbar>
 <!--      Проблема: если список лайкнутых рецептов изменился, невозможно очистить serchbar      -->
       <recipe-container :recipes="filteredLikedRecipes" @info="infoRecipeOpen"/>
     </ion-content>
@@ -31,7 +31,7 @@ const isOpen = ref(false)
 const {recipes, ingredients} = storeToRefs(recipeStore)
 const {likeAll, likedRecipes} = storeToRefs(userStore)
 const filteredLikedRecipes = ref([])
-const searchRecipe = ref ({})
+const searchRecipe = ref ('')
 filteredLikedRecipes.value = likedRecipes.value;
 
 onMounted(() => {
