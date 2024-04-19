@@ -87,7 +87,15 @@ const infoRecipeClose = function () {
 const handleInput = function (event) {
   const query = event.target.value.toLowerCase();
   filteredRecipes.value = recipes.value.filter((d) => d.name.toLowerCase().indexOf(query) > -1);
-  filteredByCategoryRecipes.value = filteredRecipes.value;
+  let category = currentCategory.value;
+  if (category === "Второе") {
+    category = "Вторые блюда";
+  }
+  if (category === "Все") {
+    filteredByCategoryRecipes.value = filteredRecipes.value;
+  } else {
+    filteredByCategoryRecipes.value = filteredRecipes.value.filter((d) => d.category === category);
+  }
 }
 
 const filterByCategory = function (category) {
